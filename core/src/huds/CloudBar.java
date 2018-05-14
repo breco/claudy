@@ -15,7 +15,7 @@ public class CloudBar {
         this.cloud = cloud;
     }
     public void draw(SpriteBatch batch){
-        for(int i = 0; i < cloud.lifes;i++){
+        for(int i = 0; i < cloud.LIFES; i++){
             batch.draw(cloud.getTextureRegion(),
                     Principal.WIDTH- cloud.getWidth()*(i+1),
                     Principal.HEIGHT-cloud.getHeight(),

@@ -2,23 +2,24 @@ package screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.breco.claudy.Principal;
 
+import java.lang.reflect.InvocationTargetException;
+
 import allies.Allies;
 import allies.Cloud;
 import allies.Flower;
 import bullets.Bullets;
-import enemies.DarkCloud;
 import enemies.Enemies;
-import enemies.Fire;
-import enemies.ThunderCloud;
 import huds.CloudBar;
 import huds.GameOver;
 import huds.HighScore;
 import huds.StageCleared;
+import utils.StageLoader;
 
 /**
  * Created by victor on 5/9/17.
@@ -40,6 +41,16 @@ public class MainGame implements Screen {
     public CloudBar cloudBar;
     public StageCleared stageCleared;
 
+
+    //MUSIC variables
+
+    Music music = Gdx.audio.newMusic(Gdx.files.internal("music/bgm1.ogg"));
+
+    //SPECIAL EFFECTS variables
+
+    //Sound winSound = Gdx.audio.newMusic(Gdx.files.internal("sound effects/win.wav"));
+    //Music loseSound = Gdx.audio.newMusic(Gdx.files.internal("sound effects/lose.wav"));
+
     public MainGame(Principal game){
         this.game = game;
         cam = new OrthographicCamera(game.WIDTH, game.HEIGHT);
@@ -59,17 +70,34 @@ public class MainGame implements Screen {
 
         //TEST
 
-
-
+        music.setLooping(true);
+        music.play();
         cloud = new Cloud(game.WIDTH/2,game.HEIGHT-game.HEIGHT/4);
         cloudBar = new CloudBar(cloud);
 
 
-        //enemies.add(new Fire (100,300,"polar"));
-        //enemies.add(new Fire (300,200,"polar"));
-        //enemies.add(new Fire (500,300,"polar"));
+        /*enemies.add(new Fire(100,300,"polar"));
+        enemies.add(new Fire (300,200,"polar"));
+        enemies.add(new Fire(500,300,"polar"));
 
-        enemies.add(new Fire (100,200,""));
+        enemies.add(new FireEater(250,250,"static"));*/
+
+        StageLoader loader = new StageLoader();
+        try {
+            loader.loadStage(enemies);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        }
+
+        /*enemies.add(new Fire(100,200,""));
         enemies.add(new Fire (200,200,""));
         enemies.add(new Fire (300,200,""));
         enemies.add(new Fire (400,200,""));
@@ -81,7 +109,7 @@ public class MainGame implements Screen {
         enemies.add(new Fire (400,240,""));
         enemies.add(new Fire (500,240,""));
 
-        enemies.add(new ThunderCloud (100,280,""));
+        enemies.add(new ThunderCloud(100,280,""));
         enemies.add(new Fire (200,280,""));
         enemies.add(new ThunderCloud(300,280,""));
         enemies.add(new Fire (400,280,""));
@@ -105,7 +133,7 @@ public class MainGame implements Screen {
 
         enemies.add(new DarkCloud(100,470,""));
         enemies.add(new DarkCloud(300,470,""));
-        enemies.add(new DarkCloud(500,470,""));
+        enemies.add(new DarkCloud(500,470,""));*/
 
 
 
@@ -123,6 +151,8 @@ public class MainGame implements Screen {
         if(cloud.isDead()){
             gameOver.input();
             if(gameOver.canRestart()){
+                //loseSound.setVolume(0.5f);
+                //loseSound.play();
                 game.setScreen(new MainMenu(game));
                 dispose();
             }
@@ -130,8 +160,11 @@ public class MainGame implements Screen {
         }
         stageCleared.update();
         if(stageCleared.isCleared()){
+            music.stop();
             stageCleared.input();
             if(stageCleared.canNextStage()){
+                //winSound.setVolume(0.5f);
+                //winSound.play();
                 game.setScreen(new MainMenu(game));
                 dispose();
             }
@@ -216,6 +249,7 @@ public class MainGame implements Screen {
 
     @Override
     public void dispose() {
-
+        music.stop();
+        music.dispose();
     }
 }

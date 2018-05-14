@@ -2,6 +2,7 @@ package huds;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -9,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.breco.claudy.Principal;
 
 import enemies.Enemies;
+import screens.MainGame;
 import utils.TimeManager;
 
 /**
@@ -21,28 +23,39 @@ public class StageCleared {
     private boolean enterPressed = false;
     Enemies enemies;
     private boolean cleared = false;
-    public StageCleared(Enemies enemies){
+    Texture bg;
+    int flowerBonus;
+    public StageCleared(Enemies enemies) {
         this.enemies = enemies;
         font = new BitmapFont(Gdx.files.internal("fonts/font.fnt"));
         font.setColor(Color.WHITE);
         font.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
         font.getData().setScale(0.5f, 0.5f);
         time = new TimeManager();
+        bg = new Texture(Gdx.files.internal("colors/Black Blue.png"));
+
     }
     public void draw(SpriteBatch batch){
         if(this.enemies.length() != 0) return;
-        font.draw(batch, "STAGE CLEARED!", Principal.WIDTH/3f, Principal.HEIGHT/1.8f);
+        batch.draw(bg,Principal.WIDTH/6,Principal.HEIGHT/5,Principal.WIDTH*2/3,Principal.HEIGHT/2);
+        font.draw(batch, "STAGE CLEARED!", Principal.WIDTH/3f, Principal.HEIGHT*2/3f);
+        font.draw(batch, "SCORE            "+MainGame.highscore.getScore(), Principal.WIDTH/6+50, Principal.HEIGHT*2/3f-100);
+        font.draw(batch, "FLOWER BONUS     "+flowerBonus, Principal.WIDTH/6+50, Principal.HEIGHT*2/3f-150);
+        font.draw(batch, "TOTAL            "+(MainGame.highscore.getScore()+flowerBonus), Principal.WIDTH/6+50, Principal.HEIGHT*2/3f-200);
 
     }
     public void start(){
-        time.setChronometer(5);
+        time.setChronometer(50);
         time.start();
-    Gdx.app.log("TIME","STARTO!");
     }
     public void update(){
         if(this.enemies.length() == 0 && !cleared){
             start();
             cleared = true;
+            flowerBonus = MainGame.allies.getFlowerbonus();
+            Music win = Gdx.audio.newMusic(Gdx.files.internal("sound effects/win-4.mp3"));
+            win.play();
+            Gdx.app.log("CLEARED","CLEARED");
         }
 
     }
@@ -53,7 +66,6 @@ public class StageCleared {
         }
     }
     public boolean canNextStage(){
-        Gdx.app.log("timering",time.ring()+"");
         return enterPressed || time.ring();
     }
     public boolean isCleared(){

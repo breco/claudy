@@ -2,15 +2,19 @@ package allies;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Rectangle;
 import com.breco.claudy.Principal;
 
 import bullets.Waterdrop;
 import screens.MainGame;
 import utils.Animator;
+import utils.Counter;
 
 /**
  * Created by victor on 4/10/18.
@@ -22,6 +26,13 @@ public class Cloud extends Sprite {
     //VISUAL variables
     public Animator animator;
     public Animator bulletAnimator;
+    private boolean blink = false;
+
+
+
+    //SPECIAL EFFECTS variables
+
+    Sound pium = Gdx.audio.newSound(Gdx.files.internal("sound effects/shoot-02.wav"));
 
 
     //MOVE variables
@@ -38,19 +49,25 @@ public class Cloud extends Sprite {
 
     //LIFE variables
 
-    public int lifes = 3;
+    public int LIFES = 3;
+    private Counter impactCounter;
+    private int inmunityTimer = 150;
 
     public Cloud(int x, int y){
-        //super(new Texture(Gdx.files.internal("allies/cloud.png")));
         setPosition(x,y);
         setSize(48,48);
         int[] size3 = {16,16};
         animator = new Animator(new Texture(Gdx.files.internal("allies/cloud.png")),1,2,2,0.4f,size3);
         int[] size2 = {8,8};
         bulletAnimator = new Animator(new Texture(Gdx.files.internal("bullets/Waterdrop.png")),1,2,2,0.8f,size2);
+        impactCounter = new Counter();
     }
     public void update(){
         move();
+        animation();
+        impactCounter.update();
+        impactCounter.update();
+
     }
     public void input(){
         if(isDead()) return;
@@ -101,17 +118,20 @@ public class Cloud extends Sprite {
     public void shoot(){
         if(isDead()) return;
         if(CURRENT_SHOTS >= MAX_SHOTS) return;
+        pium.play(0.5f);
         CURRENT_SHOTS++;
         Waterdrop wd = new Waterdrop(bulletAnimator, ((int) (getX()+getWidth()/3)), ((int) getY()));
         MainGame.bullets.add(wd);
     }
     public void getDamage(int dmg) {
-        if(isDead()) return;
+
+        if(isDead() || impactCounter.started()) return;
+        impactCounter.setLimit(inmunityTimer);
         CURRENT_HP -= dmg;
         if (CURRENT_HP <= 0) {
             CURRENT_HP = 0;
-            lifes -=1;
-            if(lifes == 0){
+            LIFES -=1;
+            if(LIFES == 0){
                 MainGame.gameOver.start();
             }
             else{
@@ -122,11 +142,32 @@ public class Cloud extends Sprite {
 
     }
     public boolean isDead(){
-        if(CURRENT_HP <= 0) return true;
+        if(CURRENT_HP <= 0 || MainGame.allies.length() == 0) return true;
         return false;
     }
     public TextureRegion getTextureRegion(){
 
         return animator.getStaticTextureRegion();
+    }
+    //ANIMATION METHODS
+
+    public void animation(){
+        if(impactCounter.started()){
+            if(blink){
+                blink = false;
+                setColor(Color.WHITE);
+            }
+            else{
+                setColor(Color.BLACK);
+                blink = true;
+            }
+        }
+        else{
+            setColor(Color.WHITE);
+        }
+    }
+    @Override
+    public Rectangle getBoundingRectangle(){
+        return new Rectangle(getX()+getWidth()*0.1f,getY()+getHeight()*0.1f,getWidth()*0.8f,getHeight()*0.8f);
     }
 }

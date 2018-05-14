@@ -15,6 +15,7 @@ public abstract class Ally extends Sprite {
     int HP;
     int ATK;
     int CURRENT_HP;
+    int points;
     //others
     int appearance;
 
@@ -29,6 +30,7 @@ public abstract class Ally extends Sprite {
     public abstract void shoot();
     public abstract void update();
     public abstract void move();
+    public abstract void getWater(int WP);
     public abstract void draw(SpriteBatch batch);
     public void getDamage(int dmg) {
 

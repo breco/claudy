@@ -33,7 +33,7 @@ public class DarkCloud extends Enemy{
     //BLOW variables
     Rectangle blowRect;
     public DarkCloud(int x, int y,String moveType) {
-        super(x, y, 5, 1, 1, 500);
+        super(x, y, 3, 1, 1, 500);
         this.moveType = moveType;
         int[] size2 = {8,8};
         int[] size = {16,16};

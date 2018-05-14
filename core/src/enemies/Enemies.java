@@ -1,5 +1,7 @@
 package enemies;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
 
@@ -9,6 +11,7 @@ import com.badlogic.gdx.utils.Array;
 
 public class Enemies {
     private Array<Enemy> enemies;
+    private Sound boom = Gdx.audio.newSound(Gdx.files.internal("sound effects/explosion-02.wav"));
     public Enemies() {
         enemies = new Array<Enemy>();
 
@@ -27,6 +30,7 @@ public class Enemies {
     }
     public void remove(Enemy enemy){
         enemies.removeValue(enemy, false);
+        boom.play(0.5f);
     }
     public Array<Enemy> getEnemies(){
         return enemies;

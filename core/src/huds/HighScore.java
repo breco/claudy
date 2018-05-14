@@ -13,7 +13,7 @@ import com.breco.claudy.Principal;
 
 public class HighScore {
     BitmapFont font;
-    int score = 0;
+    private int score = 0;
 
     public HighScore() {
         font = new BitmapFont(Gdx.files.internal("fonts/font.fnt"));
@@ -28,4 +28,6 @@ public class HighScore {
     public void add(int points){
         score+=points;
     }
+    public int getScore(){return score;}
+
 }

@@ -55,8 +55,17 @@ public class ThunderCloud extends Enemy {
     public void update() {
         move();
         shoot();
+        attack();
     }
 
+    public void attack(){
+        if(MainGame.cloud.getBoundingRectangle().overlaps(getBoundingRectangle())){
+
+            MainGame.cloud.getDamage(ATK);
+            MainGame.enemies.remove(this);
+            return;
+        }
+    }
     @Override
     public void move() {
         if(getY() >= MAX_Y){

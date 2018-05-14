@@ -1,0 +1,11 @@
+{
+	"enemies" : [
+	  	{"clase" : "enemies.Fire", "posx" : 100, "posy" : 200, "moveType" : ""},
+		{"clase" : "enemies.Fire", "posx" : 200, "posy" : 200, "moveType" : "polar"},
+	  	{"clase" : "enemies.ThunderCloud", "posx" : 100, "posy" : 300,   "moveType" : ""},
+		{"clase" : "enemies.DarkCloud", "posx" : 200, "posy" : 300,   "moveType" : ""},
+        {"clase" : "enemies.FireEater", "posx" : 200, "posy" : 400,   "moveType" : "static"}
+	]
+
+}
+
