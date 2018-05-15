@@ -31,6 +31,9 @@ public class Waterdrop extends Bullet {
                 MainGame.bullets.remove(this);
                 MainGame.cloud.CURRENT_SHOTS--;
                 MainGame.highscore.add(enemy.points);
+                if (enemy.getHP() ==0){
+                    MainGame.cloud.setAP(1);
+                }
                 return;
             }
         }
@@ -41,6 +44,7 @@ public class Waterdrop extends Bullet {
                 ally.getWater(ATK);
                 MainGame.bullets.remove(this);
                 MainGame.cloud.CURRENT_SHOTS--;
+
             }
         }
     }

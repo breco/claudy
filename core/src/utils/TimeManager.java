@@ -9,15 +9,19 @@ public class TimeManager {
     private long totalPauseTime;
     private long pauseInit;
     private float chronometer;
+    private boolean started;
     public TimeManager(){
         pauseInit = 0;
         totalPauseTime = 0;
         startTime = 0;
+        started = false;
     }
     public void start(){
         //
         startTime = System.currentTimeMillis();
+        started = true;
     }
+
     public float getTime(){
         //
         return (System.currentTimeMillis() - startTime - totalPauseTime)/1000f;
@@ -40,6 +44,9 @@ public class TimeManager {
     public boolean ring(){
         if(getTime()>= chronometer) return true;
         return false;
+    }
+    public boolean isStarted(){
+        return started;
     }
 }
 

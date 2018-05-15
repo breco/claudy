@@ -61,7 +61,7 @@ public class ThunderCloud extends Enemy {
     public void attack(){
         if(MainGame.cloud.getBoundingRectangle().overlaps(getBoundingRectangle())){
 
-            MainGame.cloud.getDamage(ATK);
+            MainGame.cloud.setDamage(getATK());
             MainGame.enemies.remove(this);
             return;
         }

@@ -25,7 +25,7 @@ public class Fire extends Enemy {
     String dirX = "R";
     //stats
     int SPEED_X = 2;
-    float SPEED_Y = 0.1f;
+    float SPEED_Y = 0.15f;
 
     //MOVE variables
     double r = 100;

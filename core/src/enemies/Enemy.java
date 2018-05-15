@@ -12,9 +12,9 @@ import utils.Animator;
 
 public abstract class Enemy extends Sprite {
     //stats
-    int HP;
-    int ATK;
-    int CURRENT_HP;
+    private int HP;
+    private int ATK;
+    private int  CURRENT_HP;
     public int points;
     //others
     int appearance;
@@ -48,6 +48,8 @@ public abstract class Enemy extends Sprite {
     public int getATK(){
         return ATK;
     }
+
+    public int getHP(){return CURRENT_HP;}
 
 
 }

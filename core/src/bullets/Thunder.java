@@ -23,7 +23,7 @@ public class Thunder extends Bullet {
     public void attack(){
         if(MainGame.cloud.getBoundingRectangle().overlaps(getBoundingRectangle())){
 
-            MainGame.cloud.getDamage(ATK);
+            MainGame.cloud.setDamage(ATK);
             MainGame.bullets.remove(this);
             return;
         }

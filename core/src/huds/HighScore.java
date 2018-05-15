@@ -12,7 +12,7 @@ import com.breco.claudy.Principal;
  */
 
 public class HighScore {
-    BitmapFont font;
+    private BitmapFont font;
     private int score = 0;
 
     public HighScore() {

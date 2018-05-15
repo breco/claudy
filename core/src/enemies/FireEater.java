@@ -8,6 +8,7 @@ import com.breco.claudy.Principal;
 
 import java.util.Random;
 
+import allies.Ally;
 import bullets.Smoke;
 import screens.MainGame;
 import utils.Animator;
@@ -21,7 +22,7 @@ public class FireEater extends Enemy {
     String dirX = "R";
     //stats
     int SPEED_X = 2;
-    float SPEED_Y = 0.5f;
+    float SPEED_Y = 0.6f;
 
     //MOVE variables
     double r = 100;
@@ -30,19 +31,19 @@ public class FireEater extends Enemy {
     int start_y;
     String moveType;
     public FireEater(int x, int y, String moveType){
-        super(x,y,2,1,1,500);
+        super(x,y,3,1,1,500);
         start_x = x;
         start_y = y;
         this.moveType = moveType;
         int[] size = {16,16};
-        setSize(40,40);
+        setSize(48,48);
         //setColor(Color.PINK);
         //setColor(Color.PURPLE);
         setColor(Color.SCARLET);
         //setColor(Color.SKY);
         animator = new Animator(new Texture(Gdx.files.internal("enemies/Fire.png")),1,2,2,0.5f,size);
         int[] size2 = {8,8};
-        bulletAnimator = new Animator(new Texture(Gdx.files.internal("bullets/Smoke.png")),1,2,2,0.8f,size2);
+        bulletAnimator = new Animator(new Texture(Gdx.files.internal("bullets/Smoke.png")),1,2,2,0.4f,size2);
         Random random = new Random();
         shootInterval = random.nextInt(200) + 100; //[1,3]
     }
@@ -61,6 +62,18 @@ public class FireEater extends Enemy {
     public void update() {
         move();
         shoot();
+        attack();
+    }
+
+    public void attack(){
+        for(Ally ally : MainGame.allies.getAllies()){
+            if(ally.getBoundingRectangle().overlaps(getBoundingRectangle())){
+                MainGame.allies.remove(ally);
+                MainGame.enemies.remove(this);
+                MainGame.enemies.add(new BurningFlower(((int) ally.getX()), ((int) ally.getY()),""));
+                break;
+            }
+        }
     }
 
     @Override
@@ -85,6 +98,7 @@ public class FireEater extends Enemy {
         }
         setY(getY() - SPEED_Y);
     }
+
 
     @Override
     public void draw(SpriteBatch batch) {

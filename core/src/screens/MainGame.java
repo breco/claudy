@@ -15,6 +15,7 @@ import allies.Cloud;
 import allies.Flower;
 import bullets.Bullets;
 import enemies.Enemies;
+import huds.AttackPowerBar;
 import huds.CloudBar;
 import huds.GameOver;
 import huds.HighScore;
@@ -40,16 +41,13 @@ public class MainGame implements Screen {
     public static GameOver gameOver;
     public CloudBar cloudBar;
     public StageCleared stageCleared;
-
+    public AttackPowerBar attackPowerBar;
 
     //MUSIC variables
 
     Music music = Gdx.audio.newMusic(Gdx.files.internal("music/bgm1.ogg"));
 
-    //SPECIAL EFFECTS variables
 
-    //Sound winSound = Gdx.audio.newMusic(Gdx.files.internal("sound effects/win.wav"));
-    //Music loseSound = Gdx.audio.newMusic(Gdx.files.internal("sound effects/lose.wav"));
 
     public MainGame(Principal game){
         this.game = game;
@@ -68,19 +66,15 @@ public class MainGame implements Screen {
         gameOver = new GameOver();
         stageCleared = new StageCleared(enemies);
 
+
         //TEST
 
         music.setLooping(true);
         music.play();
         cloud = new Cloud(game.WIDTH/2,game.HEIGHT-game.HEIGHT/4);
         cloudBar = new CloudBar(cloud);
+        attackPowerBar = new AttackPowerBar(cloud);
 
-
-        /*enemies.add(new Fire(100,300,"polar"));
-        enemies.add(new Fire (300,200,"polar"));
-        enemies.add(new Fire(500,300,"polar"));
-
-        enemies.add(new FireEater(250,250,"static"));*/
 
         StageLoader loader = new StageLoader();
         try {
@@ -96,44 +90,6 @@ public class MainGame implements Screen {
         } catch (InstantiationException e) {
             e.printStackTrace();
         }
-
-        /*enemies.add(new Fire(100,200,""));
-        enemies.add(new Fire (200,200,""));
-        enemies.add(new Fire (300,200,""));
-        enemies.add(new Fire (400,200,""));
-        enemies.add(new Fire (500,200,""));
-
-        enemies.add(new Fire (100,240,""));
-        enemies.add(new Fire (200,240,""));
-        enemies.add(new Fire (300,240,""));
-        enemies.add(new Fire (400,240,""));
-        enemies.add(new Fire (500,240,""));
-
-        enemies.add(new ThunderCloud(100,280,""));
-        enemies.add(new Fire (200,280,""));
-        enemies.add(new ThunderCloud(300,280,""));
-        enemies.add(new Fire (400,280,""));
-        enemies.add(new ThunderCloud (500,280,""));
-
-        enemies.add(new Fire (100,320,""));
-        enemies.add(new Fire (200,320,""));
-        enemies.add(new Fire (300,320,""));
-        enemies.add(new Fire (400,320,""));
-        enemies.add(new Fire (500,320,""));
-
-        enemies.add(new Fire (100,360,""));
-        enemies.add(new Fire (200,360,""));
-        enemies.add(new Fire (300,360,""));
-        enemies.add(new Fire (400,360,""));
-        enemies.add(new Fire (500,360,""));
-
-        enemies.add(new DarkCloud(100,430,""));
-        enemies.add(new DarkCloud(300,430,""));
-        enemies.add(new DarkCloud(500,430,""));
-
-        enemies.add(new DarkCloud(100,470,""));
-        enemies.add(new DarkCloud(300,470,""));
-        enemies.add(new DarkCloud(500,470,""));*/
 
 
 
@@ -151,8 +107,6 @@ public class MainGame implements Screen {
         if(cloud.isDead()){
             gameOver.input();
             if(gameOver.canRestart()){
-                //loseSound.setVolume(0.5f);
-                //loseSound.play();
                 game.setScreen(new MainMenu(game));
                 dispose();
             }
@@ -163,8 +117,6 @@ public class MainGame implements Screen {
             music.stop();
             stageCleared.input();
             if(stageCleared.canNextStage()){
-                //winSound.setVolume(0.5f);
-                //winSound.play();
                 game.setScreen(new MainMenu(game));
                 dispose();
             }
@@ -176,6 +128,7 @@ public class MainGame implements Screen {
 
         //HUD
 
+        attackPowerBar.update();
     }
 
     public void draw(){
@@ -185,6 +138,7 @@ public class MainGame implements Screen {
         enemies.draw(game.batch);
         allies.draw(game.batch);
         highscore.draw(game.batch);
+        attackPowerBar.draw(game.batch);
         cloudBar.draw(game.batch);
         if(cloud.isDead()) gameOver.draw(game.batch);
         stageCleared.draw(game.batch);

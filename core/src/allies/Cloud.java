@@ -37,8 +37,6 @@ public class Cloud extends Sprite {
 
     //MOVE variables
     public int SPEED = 3;
-    public int HP = 1;
-    public int CURRENT_HP = HP;
     public String dirX;
 
 
@@ -52,6 +50,16 @@ public class Cloud extends Sprite {
     public int LIFES = 3;
     private Counter impactCounter;
     private int inmunityTimer = 150;
+    public int HP = 1;
+    public int CURRENT_HP = HP;
+
+    //SPECIAL SHOT variables
+
+    private int AP = 0;
+    private int MAX_AP = 5;
+    private Cirrus cirrus;
+
+
 
     public Cloud(int x, int y){
         setPosition(x,y);
@@ -66,7 +74,7 @@ public class Cloud extends Sprite {
         move();
         animation();
         impactCounter.update();
-        impactCounter.update();
+
 
     }
     public void input(){
@@ -82,6 +90,12 @@ public class Cloud extends Sprite {
         }
         if(Gdx.input.isKeyJustPressed(Input.Keys.SPACE)){
             shoot();
+        }
+        if(Gdx.input.isKeyJustPressed(Input.Keys.UP)){
+            setCirrus();
+        }
+        else if(Gdx.input.isKeyJustPressed(Input.Keys.DOWN)){
+            releaseCirrus();
         }
     }
     public void draw(SpriteBatch batch){
@@ -115,6 +129,21 @@ public class Cloud extends Sprite {
 
 
     }
+
+    public void setCirrus(){
+        if(cirrus != null) return;
+        if(AP == MAX_AP){
+
+            AP = 0;
+            cirrus = new Cirrus(((int) getX()), ((int) (getY()+getHeight()*2)));
+            MainGame.allies.add(cirrus);
+        }
+    }
+    public void releaseCirrus(){
+        if(cirrus == null) return;
+        cirrus.attack();
+        cirrus = null;
+    }
     public void shoot(){
         if(isDead()) return;
         if(CURRENT_SHOTS >= MAX_SHOTS) return;
@@ -123,7 +152,7 @@ public class Cloud extends Sprite {
         Waterdrop wd = new Waterdrop(bulletAnimator, ((int) (getX()+getWidth()/3)), ((int) getY()));
         MainGame.bullets.add(wd);
     }
-    public void getDamage(int dmg) {
+    public void setDamage(int dmg) {
 
         if(isDead() || impactCounter.started()) return;
         impactCounter.setLimit(inmunityTimer);
@@ -138,6 +167,17 @@ public class Cloud extends Sprite {
                 CURRENT_HP = HP;
             }
 
+        }
+
+    }
+
+
+
+    public void setAP(int amount){
+
+        AP+=amount;
+        if(AP >= MAX_AP){
+            AP = MAX_AP;
         }
 
     }
@@ -169,5 +209,14 @@ public class Cloud extends Sprite {
     @Override
     public Rectangle getBoundingRectangle(){
         return new Rectangle(getX()+getWidth()*0.1f,getY()+getHeight()*0.1f,getWidth()*0.8f,getHeight()*0.8f);
+    }
+
+    // GETTERS
+
+    public int getAP(){
+        return AP;
+    }
+    public int getMAX_AP(){
+        return MAX_AP;
     }
 }

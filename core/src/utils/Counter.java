@@ -42,5 +42,14 @@ public class Counter {
     public boolean started(){
         return started;
     }
+    public int getCount(){
+        return count;
+    }
+    public boolean ring(){
+        if(count == limit){
+            return true;
+        }
+        return false;
+    }
 
 }

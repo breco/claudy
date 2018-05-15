@@ -29,11 +29,9 @@ public class StageLoader {
             t = json.fromJson(JsonEnemy.class, enemies.get(i).toString());
             Class<?> clazz = Class.forName(t.clase);
             Constructor<?> ctor = clazz.getConstructor(int.class,int.class,String.class);
-            Gdx.app.log("parameters",""+t.posx+","+t.posy+"   moveType:"+t.moveType);
             finalEnemies.add((Enemy)ctor.newInstance(t.posx, t.posy,t.moveType));
             i++;
         }
-        Gdx.app.log("size",finalEnemies.length()+"");
 
     }
 
