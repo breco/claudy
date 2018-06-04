@@ -4,7 +4,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import screens.MainGame;
 import utils.Animator;
+import utils.TimeManager;
 
 public class FireDevilFireBall extends Enemy{
 
@@ -12,9 +14,9 @@ public class FireDevilFireBall extends Enemy{
     float base_x,base_y;
     double degree;
     float SPEED_DEGREE = 0.033f;
-    Enemy father;
-    public FireDevilFireBall(float x, float y, float degree, float appearance, Enemy enemy){
-        super((int) x,(int)y,3,1,appearance,10);
+    FireDevil father;
+    public FireDevilFireBall(float x, float y, float degree, float appearance, FireDevil enemy){
+        super((int) x,(int)y,15,1,appearance,1000);
         int[] size = {32,32};
         animator = new Animator(new Texture(Gdx.files.internal("enemies/FireDevilFireBall.png")),1,2,2,0.3f,size);
         dyingAnimator = new Animator(new Texture(Gdx.files.internal("enemies/FireDevilFireBallDefeat.png")),3,2,6,0.1f,size);
@@ -53,4 +55,21 @@ public class FireDevilFireBall extends Enemy{
         }
         animator.draw(this,batch);
     }
+
+    @Override
+    public void setDamage(int dmg) {
+        if(isDead()) return;
+        CURRENT_HP -= dmg;
+        if (CURRENT_HP <= 0) {
+            father.setDamage(1);
+            father.addBulletSpeed(1);
+            dyingTimer = new TimeManager();
+            dyingTimer.setChronometer(dyingDuration);
+            dyingTimer.start();
+            CURRENT_HP = 0;
+            MainGame.enemies.remove(this);
+        }
+
+    }
+
 }

@@ -2,6 +2,7 @@ package screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
@@ -35,12 +36,15 @@ public class MainMenu implements Screen {
         font.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
         font.getData().setScale(0.5f, 0.5f);
         highscore = new HighScore();
-        highscore.add(12550);
+
 
     }
     public void input(){
         if(Gdx.input.isKeyJustPressed(Input.Keys.ENTER)){
-            game.setScreen(new MainGame(1,game));
+            Preferences prefs = Gdx.app.getPreferences("Preferences");
+            prefs.putBoolean("new",true);
+            game.setScreen(new MainGame(game));
+
             dispose();
         }
     }

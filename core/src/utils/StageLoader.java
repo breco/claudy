@@ -41,6 +41,7 @@ public class StageLoader {
         JsonReader reader = new JsonReader();
 
         String stage = Gdx.app.getPreferences("Preferences").getString("stage");
+
         JsonValue base = reader.parse(Gdx.files.internal("stages/"+stage+".json"));
         JsonValue enemies = base.get("enemies");
         int i = 0;

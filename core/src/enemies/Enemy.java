@@ -15,7 +15,7 @@ public abstract class Enemy extends Sprite {
     //stats
     private int HP;
     private int ATK;
-    private int  CURRENT_HP;
+    protected int  CURRENT_HP;
     public int points;
     //others
     float appearance;

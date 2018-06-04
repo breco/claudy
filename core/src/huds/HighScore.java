@@ -1,6 +1,7 @@
 package huds;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -13,13 +14,25 @@ import com.breco.claudy.Principal;
 
 public class HighScore {
     private BitmapFont font;
-    private int score = 0;
+    private int score;
 
     public HighScore() {
+
         font = new BitmapFont(Gdx.files.internal("fonts/font.fnt"));
         font.setColor(Color.WHITE);
         font.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
         font.getData().setScale(0.5f, 0.5f);
+
+        Preferences prefs = Gdx.app.getPreferences("Preferences");
+        if(prefs.getBoolean("new")){
+            score = 0;
+            prefs.putBoolean("new",false);
+        }
+        else{
+            score = prefs.getInteger("highscore");
+        }
+
+
     }
     public void draw(SpriteBatch batch){
         font.draw(batch, "HIGH SCORE", Principal.WIDTH/3, Principal.HEIGHT-15);

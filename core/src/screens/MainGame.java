@@ -51,7 +51,7 @@ public class MainGame implements Screen {
     public static TimeManager time;
 
 
-    public MainGame(int stage, Principal game){
+    public MainGame(Principal game){
         this.game = game;
         cam = new OrthographicCamera(game.WIDTH, game.HEIGHT);
         cam.position.set(cam.viewportWidth/2,cam.viewportHeight/2, 0);
@@ -65,7 +65,7 @@ public class MainGame implements Screen {
         //HUD
         highscore = new HighScore();
         gameOver = new GameOver();
-        stageCleared = new StageCleared(enemies, 25);
+        stageCleared = new StageCleared(enemies, 5);
 
 
         //TEST
@@ -107,8 +107,9 @@ public class MainGame implements Screen {
             music.stop();
             stageCleared.input();
             if(stageCleared.canNextStage()){
-                game.setScreen(new MainMenu(game));
+                game.setScreen(new MainGame(game));
                 dispose();
+                return;
             }
         }
         cloud.update();

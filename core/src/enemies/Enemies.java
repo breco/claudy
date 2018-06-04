@@ -73,7 +73,6 @@ public class Enemies {
             if(enemy instanceof ThunderCloud) continue;
             length++;
         }
-
-        return length;
+        return length + dying.size;
     }
 }

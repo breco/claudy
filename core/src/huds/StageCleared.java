@@ -2,6 +2,7 @@ package huds;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
@@ -60,7 +61,11 @@ public class StageCleared {
             flowerBonus = MainGame.allies.getFlowerbonus();
             Music win = Gdx.audio.newMusic(Gdx.files.internal("sound effects/win-4.mp3"));
             win.play();
-            Gdx.app.log("CLEARED","CLEARED");
+            Preferences prefs = Gdx.app.getPreferences("Preferences");
+            prefs.putInteger("stage",prefs.getInteger("stage")+1);
+            prefs.putInteger("highscore",MainGame.highscore.getScore()+flowerBonus);
+            prefs.putInteger("lifes",MainGame.cloud.LIFES);
+            prefs.flush();
         }
 
     }

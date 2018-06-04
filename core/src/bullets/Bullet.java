@@ -74,4 +74,15 @@ public class Bullet extends Sprite {
             setX(getX()-amount);
         }
     }
+    public void setDirection(char dir){
+        if(dir == 'L' || dir == 'R'){
+            oriX = dir;
+        }
+        else if(dir == 'U' || dir == 'D'){
+            oriY = dir;
+        }
+    }
+    public void setSPEED(int speed){
+        SPD = speed;
+    }
 }

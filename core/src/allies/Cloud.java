@@ -2,6 +2,7 @@ package allies;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
@@ -49,7 +50,7 @@ public class Cloud extends Sprite {
 
     //LIFE variables
 
-    public int LIFES = 5;
+    public int LIFES;
     private Counter impactCounter;
     private int inmunityTimer = 150;
     public int HP = 1;
@@ -70,6 +71,8 @@ public class Cloud extends Sprite {
         animator = new Animator(new Texture(Gdx.files.internal("allies/cloud/"+name+".png")),1,2,2,0.4f,size3);
         dying = new Animator(new Texture(Gdx.files.internal("allies/cloud/"+name+"Defeat.png")),2,3,6,0.15f,size3);
         impactCounter = new Counter();
+        Preferences prefs = Gdx.app.getPreferences("Preferences");
+        LIFES = prefs.getInteger("lifes");
     }
     public void update(){
         move();
