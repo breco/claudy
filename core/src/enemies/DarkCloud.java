@@ -22,7 +22,6 @@ public class DarkCloud extends Enemy{
 
 
     //VISUAL variables
-    Animator bulletAnimator;
 
     //MOVE variables
     String dirX = "R";
@@ -32,14 +31,15 @@ public class DarkCloud extends Enemy{
 
     //BLOW variables
     Rectangle blowRect;
-    public DarkCloud(int x, int y,String moveType) {
-        super(x, y, 3, 1, 1, 500);
+    public DarkCloud(int x, int y,String moveType, float appearance) {
+        super(x, y, 3, 1, appearance, 500);
         this.moveType = moveType;
         int[] size2 = {8,8};
         int[] size = {16,16};
         setSize(32,32);
         animator = new Animator(new Texture(Gdx.files.internal("enemies/Dark Cloud.png")),1,2,2,0.5f,size);
-        bulletAnimator = new Animator(new Texture(Gdx.files.internal("bullets/Smoke.png")),1,2,2,0.5f,size2);
+        dyingAnimator = new Animator(new Texture(Gdx.files.internal("enemies/EnemyDefeat3.png")),1,2,2,0.2f,size2);
+        dyingDuration = 0.3f;
         Random random = new Random();
         SPEED_X = random.nextInt(4) + 1; //[1,3]
         blowRect = new Rectangle(getX()+getWidth(),getY(),96,128);
@@ -60,6 +60,10 @@ public class DarkCloud extends Enemy{
 
     @Override
     public void draw(SpriteBatch batch) {
+        if(isDead()){
+            dyingAnimator.draw(this,batch);
+            return;
+        }
         animator.draw(this,batch);
     }
 

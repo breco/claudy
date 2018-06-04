@@ -12,7 +12,7 @@ import utils.Animator;
 public class Waterdrop extends Bullet {
 
     public Waterdrop(Animator animator, int x, int y) {
-        super(animator, x, y, ' ', 'D', 1, 8);
+        super(animator, x, y, ' ', 'D', 1, 8); // SPD 8
 
         setBounds(getX(),getY(),16,16);
         type = "ally";
@@ -27,11 +27,11 @@ public class Waterdrop extends Bullet {
     public void attack(){
         for(Enemy enemy : MainGame.enemies.getEnemies()){
             if(enemy.getBoundingRectangle().overlaps(getBoundingRectangle())){
-                enemy.getDamage(ATK);
-                MainGame.bullets.remove(this);
+                enemy.setDamage(ATK);
+                MainGame.bullets.removeForced(this);
                 MainGame.cloud.CURRENT_SHOTS--;
-                MainGame.highscore.add(enemy.points);
                 if (enemy.getHP() ==0){
+                    MainGame.highscore.add(enemy.points);
                     MainGame.cloud.setAP(1);
                 }
                 return;
@@ -42,7 +42,7 @@ public class Waterdrop extends Bullet {
         for (Ally ally : MainGame.allies.getAllies()){
             if(ally.getBoundingRectangle().overlaps(getBoundingRectangle())){
                 ally.getWater(ATK);
-                MainGame.bullets.remove(this);
+                MainGame.bullets.removeForced(this);
                 MainGame.cloud.CURRENT_SHOTS--;
 
             }

@@ -25,7 +25,10 @@ public class StageCleared {
     private boolean cleared = false;
     Texture bg;
     int flowerBonus;
-    public StageCleared(Enemies enemies) {
+    //TEST
+    int timeLimit;
+    public StageCleared(Enemies enemies, int timeLimit) {
+        this.timeLimit = timeLimit;
         this.enemies = enemies;
         font = new BitmapFont(Gdx.files.internal("fonts/font.fnt"));
         font.setColor(Color.WHITE);
@@ -36,7 +39,7 @@ public class StageCleared {
 
     }
     public void draw(SpriteBatch batch){
-        if(this.enemies.length() != 0) return;
+        if(!cleared) return;
         batch.draw(bg,Principal.WIDTH/6,Principal.HEIGHT/5,Principal.WIDTH*2/3,Principal.HEIGHT/2);
         font.draw(batch, "STAGE CLEARED!", Principal.WIDTH/3f, Principal.HEIGHT*2/3f);
         font.draw(batch, "SCORE            "+MainGame.highscore.getScore(), Principal.WIDTH/6+50, Principal.HEIGHT*2/3f-100);
@@ -49,7 +52,9 @@ public class StageCleared {
         time.start();
     }
     public void update(){
-        if(this.enemies.length() == 0 && !cleared){
+        if(this.enemies.length() == 0 && !cleared && MainGame.time.getTime() >= timeLimit){
+            Gdx.app.log("time.getTime():",MainGame.time.getTime()+"");
+            Gdx.app.log("timeLimit:",timeLimit+"");
             start();
             cleared = true;
             flowerBonus = MainGame.allies.getFlowerbonus();

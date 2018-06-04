@@ -1,7 +1,6 @@
 package enemies;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -13,9 +12,9 @@ public class BurningFlower extends Enemy {
 
     //SHOOT variables
     int shootTimer = 0;
-    int shootInterval;
-
+    int shootInterval = 100;
     Animator bulletAnimator;
+    int[] bulletSize = {8,8};
 
 
 
@@ -25,14 +24,16 @@ public class BurningFlower extends Enemy {
     public BurningFlower(int x, int y, String moveType) {
         super(x, y, 3, 1, 1, 0);
         this.moveType = moveType;
-        int[] size = {16,16};
-        setSize(48,48);
-        setColor(Color.DARK_GRAY);
-        animator = new Animator(new Texture(Gdx.files.internal("allies/Flower.png")),1,2,2,0.5f,size);
-        int[] size2 = {8,8};
-        bulletAnimator = new Animator(new Texture(Gdx.files.internal("bullets/Smoke.png")),1,2,2,0.5f,size2);
+        int[] size = {24,24};
+        setSize(54,54);
+        animator = new Animator(new Texture(Gdx.files.internal("enemies/Burning Flower.png")),1,2,2,0.5f,size);
+        int[] size2= {8,8};
+        dyingAnimator = new Animator(new Texture(Gdx.files.internal("enemies/EnemyDefeat.png")),1,2,2,0.2f,size2);
+        dyingDuration = 0.3f;
 
-        shootInterval = 50;
+
+
+
     }
 
     @Override
@@ -40,7 +41,8 @@ public class BurningFlower extends Enemy {
         shootTimer++;
         if(shootTimer == shootInterval){
             shootTimer = 0;
-            MainGame.bullets.add(new Smoke(bulletAnimator,((int)(getX()+getWidth()/2)), ((int) (getY()+getHeight()))));
+            bulletAnimator = new Animator(new Texture(Gdx.files.internal("bullets/Fireball.png")),1,2,2,0.3f, bulletSize);
+            MainGame.bullets.add(new Smoke(bulletAnimator,((int)(getX()+getWidth()/2-8)), ((int) (getY()+getHeight()))));
         }
     }
 
@@ -57,6 +59,10 @@ public class BurningFlower extends Enemy {
 
     @Override
     public void draw(SpriteBatch batch) {
+        if(isDead()){
+            dyingAnimator.draw(this,batch);
+            return;
+        }
         animator.draw(this,batch);
     }
 }

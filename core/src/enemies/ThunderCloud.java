@@ -17,22 +17,24 @@ public class ThunderCloud extends Enemy {
 
     //MOVE variables
     float SPEED_Y = 0.5f;
-    int MAX_Y = Principal.HEIGHT - 75;
+    int MAX_Y = Principal.HEIGHT - 90;
 
     //VISUAL variables
-    Animator bulletAnimator;
+    Animator thunderAnimator;
 
     //SHOOT variables
     int shootTimer = 0;
-    int shootInterval = 400;
+    int shootInterval = 200;
+    int[] bulletSize = {8,8};
 
-    public ThunderCloud(int x, int y,String moveType) {
-        super(x, y, 5, 1, 1, 1000);
-        int[] size2 = {8,8};
+    public ThunderCloud(int x, int y,String moveType,float appearance) {
+        super(x, y, 5, 1, appearance, 1000);
         int[] size = {16,16};
-        setSize(32,32);
+        int[] size2 = {8,8};
+        setSize(40,40);
         animator = new Animator(new Texture(Gdx.files.internal("enemies/Thunder Cloud.png")),1,2,2,0.5f,size);
-        bulletAnimator = new Animator(new Texture(Gdx.files.internal("bullets/Thunder.png")),1,1,1,0.5f,size2);
+        dyingAnimator = new Animator(new Texture(Gdx.files.internal("enemies/EnemyDefeat3.png")),1,2,2,0.2f,size2);
+        dyingDuration = 0.3f;
     }
 
     @Override
@@ -40,12 +42,15 @@ public class ThunderCloud extends Enemy {
         shootTimer++;
         if(shootTimer == shootInterval){
             shootTimer = 0;
+
             if(getY() >= MAX_Y){
-                MainGame.bullets.add(new Thunder(bulletAnimator,((int)(getX())), ((int) (getY())),'D'));
+                thunderAnimator = new Animator(new Texture(Gdx.files.internal("bullets/Thunder.png")),1,3,3,0.1f,bulletSize);
+                MainGame.bullets.add(new Thunder(thunderAnimator,((int)(getX()+8)), ((int) (getY())),'D'));
 
             }
             else {
-                MainGame.bullets.add(new Thunder(bulletAnimator,((int)(getX())), ((int) (getY()+getHeight())),'U'));
+                thunderAnimator = new Animator(new Texture(Gdx.files.internal("bullets/Thunder.png")),1,3,3,0.1f,bulletSize);
+                MainGame.bullets.add(new Thunder(thunderAnimator,((int)(getX()+8)), ((int) (getY()+getHeight())),'U'));
             }
 
         }
@@ -79,6 +84,11 @@ public class ThunderCloud extends Enemy {
 
     @Override
     public void draw(SpriteBatch batch) {
+        if(isDead()){
+            dyingAnimator.draw(this,batch);
+            return;
+        }
         animator.draw(this,batch);
     }
+
 }

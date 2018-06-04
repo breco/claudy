@@ -4,9 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import enemies.Enemy;
-import enemies.FireEater;
-import screens.MainGame;
 import utils.Animator;
 
 /**
@@ -18,6 +15,8 @@ public class Flower extends Ally {
     //STATS variables
     private int WP = 0; //Water Points
     private int MAX_WP = 5;
+
+
     public Flower(int x, int y){
         super(x,y);
         HP = 1;
@@ -25,8 +24,10 @@ public class Flower extends Ally {
         points = 5000;
         CURRENT_HP = HP;
         int[] size = {16,16};
-        setSize(48,48);
+        setSize(42,42);
         animator = new Animator(new Texture(Gdx.files.internal("allies/Flower.png")),1,2,2,0.5f,size);
+        dyingAnimator = new Animator(new Texture(Gdx.files.internal("allies/FlowerDeath.png")),2,2,4,0.2f,size);
+        dyingDuration = 0.3f;
     }
     @Override
     public void shoot() {
@@ -35,28 +36,28 @@ public class Flower extends Ally {
 
     @Override
     public void update() {
-        for(Enemy enemy : MainGame.enemies.getEnemies()){
-            if(enemy.getBoundingRectangle().overlaps(getBoundingRectangle())){
-                if (enemy instanceof FireEater){
-                    MainGame.enemies.remove(enemy);
-                    MainGame.allies.remove(this);
-                    //MainGame.enemies.add();
-                    break;
-                }
-                getDamage(enemy.getATK());
-                MainGame.enemies.remove(enemy);
-                return;
-            }
-        }
+
         grow();
+
     }
+
 
 
     public void grow(){
         if(WP == MAX_WP){
-            MainGame.allies.remove(this);
-            MainGame.allies.add(new SuperFlower(((int) this.getX()), ((int) this.getY())));
+            int[] size = {16,16};
+            dyingDuration = 1.55f;
+            dyingAnimator = new Animator(new Texture(Gdx.files.internal("transformations/FlowerToCactus.png")),2,4,8,0.2f,size);
+            setDamage(100);
+
         }
+    }
+
+    public boolean isGrowing(){
+        if(WP == MAX_WP){
+            return true;
+        }
+        return false;
     }
 
     @Override
@@ -74,6 +75,10 @@ public class Flower extends Ally {
 
     @Override
     public void draw(SpriteBatch batch) {
+        if(isDead()){
+            dyingAnimator.draw(this,batch);
+            return;
+        }
         animator.draw(this,batch);
     }
 }

@@ -1,25 +1,26 @@
 package utils;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.utils.Json;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
+import com.breco.claudy.Principal;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
-
-import enemies.Enemies;
-import enemies.Enemy;
+import allies.Cloud;
+import allies.Flower;
+import enemies.DarkCloud;
+import enemies.Fire;
+import enemies.FireDevil;
+import enemies.FireEater;
+import enemies.ThunderCloud;
+import screens.MainGame;
 
 public class StageLoader {
-    public static class JsonEnemy {
-        public String clase,moveType;
-        public int posx,posy;
-    }
-    public void loadStage(Enemies finalEnemies) throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+
+    /*public void loadStage(Enemies finalEnemies) throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
         JsonReader reader = new JsonReader();
         Json json = new Json();
-        JsonValue base = reader.parse(Gdx.files.internal("stages/1-1.json"));
+        JsonValue base = reader.parse(Gdx.files.internal("stages/test.json"));
         JsonValue enemies = base.get("enemies");
         int i = 0;
 
@@ -27,44 +28,74 @@ public class StageLoader {
 
         while(enemies.get(i) != null){
             t = json.fromJson(JsonEnemy.class, enemies.get(i).toString());
-            Class<?> clazz = Class.forName(t.clase);
-            Constructor<?> ctor = clazz.getConstructor(int.class,int.class,String.class);
+            Class clazz = java.lang.Class.forName(t.clase);
+            Constructor ctor = clazz.getConstructor(int.class,int.class,String.class);
             finalEnemies.add((Enemy)ctor.newInstance(t.posx, t.posy,t.moveType));
             i++;
         }
 
-    }
+    }*/
 
 
-
-}
-
-
-
-
-
-/*
-
-
-
-public void loadLevel() throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+    public void loadStage(MainGame game){
         JsonReader reader = new JsonReader();
-        Json json = new Json();
-        JsonValue base = reader.parse(Gdx.files.internal("levels/"+game.prefs.getString("loadLevel")+".json"));
 
-        JsonValue enemigos = base.get("enemies");
-        JsonEnemy t;
+        String stage = Gdx.app.getPreferences("Preferences").getString("stage");
+        JsonValue base = reader.parse(Gdx.files.internal("stages/"+stage+".json"));
+        JsonValue enemies = base.get("enemies");
         int i = 0;
-        while(enemigos.get(i) != null){
-            t = json.fromJson(JsonEnemy.class, enemigos.get(i).toString());
-            Class<?> clazz = Class.forName(t.clase);
-            Constructor<?> ctor = clazz.getConstructor(int.class,int.class,int.class);
-            enemies.add((Enemy) ctor.newInstance(t.posx,MainGame.HEIGHT/t.posy,t.time));
+
+        JsonValue cloud = base.get("cloud");
+        game.cloud = new Cloud(Principal.WIDTH/2,Principal.HEIGHT-Principal.HEIGHT/4,cloud.get("name").asString(),cloud.get("width").asInt(),cloud.get("height").asInt());
+
+        game.bg = new Texture("backgrounds/"+Gdx.files.internal(base.get("background").asString())+".png");
+
+        game.music = Gdx.audio.newMusic(Gdx.files.internal("music/"+base.get("ost").asString()+".ogg"));
+
+        JsonEnemy t = new JsonEnemy();
+
+
+        while(enemies.get(i) != null){
+
+
+            t.clase = enemies.get(i).get("clase").asString();
+            t.posx = enemies.get(i).get("posx").asInt();
+            t.posy = enemies.get(i).get("posy").asInt();
+            t.moveType = enemies.get(i).get("moveType").asString();
+            t.appearance = enemies.get(i).get("appearance").asFloat();
+
+
+            if(t.clase.equals("enemies.FireEater")){
+                game.enemies.add(new FireEater(t.posx,t.posy,t.moveType,t.appearance));
+            }
+            else if(t.clase.equals("enemies.ThunderCloud")){
+                game.enemies.add(new ThunderCloud(t.posx,t.posy,t.moveType,t.appearance));
+            }
+            else if(t.clase.equals("enemies.FireNormal")){
+                game.enemies.add(new Fire(t.posx,t.posy,t.moveType,t.appearance));
+            }
+            else if(t.clase.equals("enemies.DarkCloud")){
+                game.enemies.add(new DarkCloud(t.posx,t.posy,t.moveType,t.appearance));
+            }
+            else if(t.clase.equals("enemies.FireDevil")){
+                game.enemies.add(new FireDevil(t.posx,t.posy,t.appearance));
+            }
             i++;
         }
 
 
-
-        bg = new Background(new Texture(Gdx.files.internal("backgrounds/"+base.getString("background"))));
+        JsonValue allies = base.get("allies");
+        i = 0;
+        while(allies.get(i) != null){
+            t.clase = allies.get(i).get("clase").asString();
+            t.posx = allies.get(i).get("posx").asInt();
+            t.posy = allies.get(i).get("posy").asInt();
+            if(t.clase.equals("allies.Flower")){
+                game.allies.add(new Flower(t.posx,t.posy));
+            }
+            i++;
+        }
     }
- */
+
+}
+

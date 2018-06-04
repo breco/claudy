@@ -8,11 +8,8 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.breco.claudy.Principal;
 
-import java.lang.reflect.InvocationTargetException;
-
 import allies.Allies;
 import allies.Cloud;
-import allies.Flower;
 import bullets.Bullets;
 import enemies.Enemies;
 import huds.AttackPowerBar;
@@ -21,6 +18,7 @@ import huds.GameOver;
 import huds.HighScore;
 import huds.StageCleared;
 import utils.StageLoader;
+import utils.TimeManager;
 
 /**
  * Created by victor on 5/9/17.
@@ -45,11 +43,15 @@ public class MainGame implements Screen {
 
     //MUSIC variables
 
-    Music music = Gdx.audio.newMusic(Gdx.files.internal("music/bgm1.ogg"));
+    public Music music;
 
 
+    //UTIL variables
 
-    public MainGame(Principal game){
+    public static TimeManager time;
+
+
+    public MainGame(int stage, Principal game){
         this.game = game;
         cam = new OrthographicCamera(game.WIDTH, game.HEIGHT);
         cam.position.set(cam.viewportWidth/2,cam.viewportHeight/2, 0);
@@ -62,44 +64,32 @@ public class MainGame implements Screen {
 
         //HUD
         highscore = new HighScore();
-        bg = new Texture(Gdx.files.internal("backgrounds/bg2.png"));
         gameOver = new GameOver();
-        stageCleared = new StageCleared(enemies);
+        stageCleared = new StageCleared(enemies, 25);
 
 
         //TEST
 
-        music.setLooping(true);
-        music.play();
-        cloud = new Cloud(game.WIDTH/2,game.HEIGHT-game.HEIGHT/4);
+
+        //cloud = new Cloud(game.WIDTH/2,game.HEIGHT-game.HEIGHT/4);
+        StageLoader loader = new StageLoader();
+        loader.loadStage(this);
         cloudBar = new CloudBar(cloud);
         attackPowerBar = new AttackPowerBar(cloud);
-
-
-        StageLoader loader = new StageLoader();
-        try {
-            loader.loadStage(enemies);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        }
+        time = new TimeManager();
+        time.start();
+        music.setLooping(true);
+        music.play();
 
 
 
-        allies.add(new Flower(100-20,0));
-        allies.add(new Flower(250-20,0));
-        allies.add(new Flower(400-20,0));
-        allies.add(new Flower(550-20,0));
 
     }
     public void input(){
+        if(stageCleared.isCleared()){
+            cloud.changeDir("");
+            return;
+        }
         cloud.input();
     }
 
@@ -133,15 +123,20 @@ public class MainGame implements Screen {
 
     public void draw(){
         game.batch.draw(bg,0,-50);
+        attackPowerBar.draw(game.batch);
+        cloudBar.draw(game.batch);
         cloud.draw(game.batch);
-        bullets.draw(game.batch);
         enemies.draw(game.batch);
         allies.draw(game.batch);
         highscore.draw(game.batch);
-        attackPowerBar.draw(game.batch);
-        cloudBar.draw(game.batch);
-        if(cloud.isDead()) gameOver.draw(game.batch);
+        if(cloud.isDead()){
+            gameOver.draw(game.batch);
+            return;
+        }
+
+        bullets.draw(game.batch);
         stageCleared.draw(game.batch);
+
     }
 
 

@@ -29,7 +29,7 @@ public class MainMenu implements Screen {
         this.game = game;
         cam = new OrthographicCamera(game.WIDTH, game.HEIGHT);
         cam.position.set(cam.viewportWidth/2,cam.viewportHeight/2, 0);
-        bg = new Texture(Gdx.files.internal("backgrounds/bg2.png"));
+        bg = new Texture(Gdx.files.internal("backgrounds/bg5.png"));
         font = new BitmapFont(Gdx.files.internal("fonts/font.fnt"));
         font.setColor(Color.WHITE);
         font.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
@@ -40,7 +40,7 @@ public class MainMenu implements Screen {
     }
     public void input(){
         if(Gdx.input.isKeyJustPressed(Input.Keys.ENTER)){
-            game.setScreen(new MainGame(game));
+            game.setScreen(new MainGame(1,game));
             dispose();
         }
     }

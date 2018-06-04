@@ -1,8 +1,0 @@
-{
-	"enemies" : [
-      {"clase" : "enemies.FireEater", "posx" : 85, "posy" : 200, "moveType" : "static"}
-
-	]
-
-}
-

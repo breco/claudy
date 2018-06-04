@@ -2,10 +2,12 @@ package bullets;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Rectangle;
 import com.breco.claudy.Principal;
 
 import screens.MainGame;
 import utils.Animator;
+import utils.TimeManager;
 
 /**
  * Created by victor on 4/11/18.
@@ -16,6 +18,13 @@ public class Bullet extends Sprite {
     int SPD,ATK;
     public Animator animator;
     public String type;
+    Rectangle rect;
+
+    //VISUAL variables
+    Animator dyingAnimator;
+    TimeManager dyingTimer;
+    float dyingDuration;
+
     public Bullet(Animator animator, int x, int y,char oriX,char oriY,int ATK,int SPD){
         setPosition(x, y);
         this.oriX = oriX;
@@ -23,7 +32,7 @@ public class Bullet extends Sprite {
         this.SPD = SPD;
         this.ATK = ATK;
         this.animator = animator;
-        setSize(animator.width*2,animator.height*2);
+
     }
     public void move(){
         if(oriX == 'L'){
@@ -43,9 +52,9 @@ public class Bullet extends Sprite {
 
         if(getY() <= 0 && type.equals("ally")){
             MainGame.cloud.CURRENT_SHOTS--;
-            MainGame.bullets.remove(this);
+            MainGame.bullets.removeForced(this);
         } else if (getY() >= Principal.HEIGHT && type.equals("enemy")){
-            MainGame.bullets.remove(this);
+            MainGame.bullets.removeForced(this);
         }
     }
     public void update(){
@@ -55,8 +64,6 @@ public class Bullet extends Sprite {
     }
     public void draw(SpriteBatch batch){
         //
-        //super.draw(batch);
-
         animator.draw(this,batch);
     }
     public void blowed(String ori, float amount){

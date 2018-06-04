@@ -12,7 +12,7 @@ import utils.TimeManager;
 
 public class Cirrus extends Ally{
 
-    private Animator bulletAnimator;
+    private Animator animatorTop,animatorMid,animatorBottom;
     private TimeManager timer;
     Sound rain;
     public Cirrus(int x, int y) {
@@ -23,11 +23,15 @@ public class Cirrus extends Ally{
         int[] size = {16,16};
         setSize(32,32);
         animator = new Animator(new Texture(Gdx.files.internal("allies/Cirrus.png")),1,2,2,0.4f,size);
-        int[] size2 = {16,16};
-        bulletAnimator = new Animator(new Texture(Gdx.files.internal("bullets/Heavy Waterdrop.png")),1,2,2,0.5f,size2);
+
+        animatorTop = new Animator(new Texture(Gdx.files.internal("bullets/SpecialW1.png")),1,2,2,0.2f,size);
+        animatorMid = new Animator(new Texture(Gdx.files.internal("bullets/SpecialW2.png")),1,2,2,0.2f,size);
+        animatorBottom = new Animator(new Texture(Gdx.files.internal("bullets/SpecialW3.png")),1,2,2,0.2f,size);
         timer = new TimeManager();
         rain = Gdx.audio.newSound(Gdx.files.internal("sound effects/rain.ogg"));
-
+        int[] size3= {8,8};
+        dyingAnimator = new Animator(new Texture(Gdx.files.internal("allies/CirrusDefeat.png")),1,2,2,0.2f,size3);
+        dyingDuration = 0.3f;
     }
 
     @Override
@@ -38,7 +42,7 @@ public class Cirrus extends Ally{
     @Override
     public void update() {
         if(timer.isStarted() && timer.ring()){
-            MainGame.allies.remove(this);
+            setDamage(HP);
             rain.stop();
         }
     }
@@ -55,6 +59,10 @@ public class Cirrus extends Ally{
 
     @Override
     public void draw(SpriteBatch batch) {
+        if(isDead()){
+            dyingAnimator.draw(this,batch);
+            return;
+        }
         animator.draw(this,batch);
     }
     public void attack(){
@@ -63,7 +71,16 @@ public class Cirrus extends Ally{
         timer.setChronometer(2);
         timer.start();
         for(int i = 1; i< 14;i++){
-            MainGame.bullets.add(new HeavyWaterdrop(bulletAnimator, ((int) getX()-8),i*48));
+            if(i == 1){
+                MainGame.bullets.add(new HeavyWaterdrop(animatorBottom, ((int) getX()-8),i*48));
+            }
+            else if(i == 13){
+                MainGame.bullets.add(new HeavyWaterdrop(animatorTop, ((int) getX()-8),i*48));
+            }
+            else{
+                MainGame.bullets.add(new HeavyWaterdrop(animatorMid, ((int) getX()-8),i*48));
+            }
+
         }
     }
 }

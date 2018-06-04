@@ -18,7 +18,10 @@ public class Principal extends Game {
 		batch = new SpriteBatch();
 		WIDTH = Gdx.graphics.getWidth();
 		HEIGHT = Gdx.graphics.getHeight();
-        this.setScreen(new MainMenu(this));
+		Preferences prefs = Gdx.app.getPreferences("Preferences");
+		prefs.putInteger("stage",0);
+		prefs.flush();
+		this.setScreen(new MainMenu(this));
 	}
 
 	@Override

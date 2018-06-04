@@ -10,7 +10,7 @@ import utils.Animator;
 public class Thunder extends Bullet {
     public Thunder(Animator animator, int x, int y,char oriY) {
         super(animator, x, y, ' ', oriY, 1, 2);
-        setBounds(getX(),getY(),32,32);
+        setSize(24,24);
 
         type = "enemy";
     }
@@ -24,7 +24,7 @@ public class Thunder extends Bullet {
         if(MainGame.cloud.getBoundingRectangle().overlaps(getBoundingRectangle())){
 
             MainGame.cloud.setDamage(ATK);
-            MainGame.bullets.remove(this);
+            MainGame.bullets.removeForced(this);
             return;
         }
 

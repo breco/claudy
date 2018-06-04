@@ -19,8 +19,9 @@ public class Animator {
     Animation animation;
     float elapsedTime;
     public int width, height;
+    public float SPEED;
     public Animator(Texture texture,int rows, int columns, int frames,float speed,int[]... size){
-
+        SPEED = speed;
         int x,y;
         if(size.length == 0){
             x = 32;
