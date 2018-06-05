@@ -40,7 +40,7 @@ public class Cloud extends Sprite {
     //MOVE variables
     public int SPEED = 3;
     public String dirX;
-
+    public String dirY;
 
     //SHOT variables
 
@@ -83,24 +83,35 @@ public class Cloud extends Sprite {
     }
     public void input(){
         if(isDead()) return;
+
         if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
-            changeDir("R");
+            changeDirX("R");
         }
         else if(Gdx.input.isKeyPressed(Input.Keys.LEFT)){
-            changeDir("L");
+            changeDirX("L");
         }
         else{
-            changeDir("");
+            changeDirX("");
+        }
+
+        if(Gdx.input.isKeyPressed(Input.Keys.UP)){
+            Gdx.app.log("UP","PRESSEd");
+            changeDirY("U");
+        }
+        else if(Gdx.input.isKeyPressed(Input.Keys.DOWN)){
+            changeDirY("D");
+        }
+        else{
+            changeDirY("");
         }
         if(Gdx.input.isKeyJustPressed(Input.Keys.SPACE)){
             shoot();
         }
-        if(Gdx.input.isKeyJustPressed(Input.Keys.UP)){
+        if(Gdx.input.isKeyJustPressed(Input.Keys.Z)){
             setCirrus();
-        }
-        else if(Gdx.input.isKeyJustPressed(Input.Keys.DOWN)){
             releaseCirrus();
         }
+
     }
     public void draw(SpriteBatch batch){
         if(isDead()){
@@ -123,18 +134,31 @@ public class Cloud extends Sprite {
                 setX(Principal.WIDTH - getWidth());
             }
         }
-        else if(dirX.equals("")){
-            return;
+        if(dirY.equals("U")){
+            setY(getY()+SPEED);
+            if(getY() > Principal.HEIGHT - getHeight() - 50){
+                setY(Principal.HEIGHT - getHeight() - 50);
+            }
+        }
+        else if(dirY.equals("D")){
+            setY(getY()-SPEED);
+            if(getY() < Principal.HEIGHT/2){
+                setY(Principal.HEIGHT/2);
+            }
         }
     }
-    public void changeDir(String dir){
+    public void changeDirX(String dir){
         if(dir.equals(dirX)){
             return;
         }
-
         dirX = dir;
 
-
+    }
+    public void changeDirY(String dir){
+        if(dir.equals(dirY)){
+            return;
+        }
+        dirY = dir;
     }
 
     public void setCirrus(){
@@ -142,7 +166,7 @@ public class Cloud extends Sprite {
         if(AP == MAX_AP){
 
             AP = 0;
-            cirrus = new Cirrus(((int) getX()), ((int) (getY()+getHeight()*2)));
+            cirrus = new Cirrus(((int) getX()), Principal.HEIGHT - 90);
             MainGame.allies.add(cirrus);
         }
     }

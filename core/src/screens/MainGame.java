@@ -87,7 +87,8 @@ public class MainGame implements Screen {
     }
     public void input(){
         if(stageCleared.isCleared()){
-            cloud.changeDir("");
+            cloud.changeDirX("");
+            cloud.changeDirY("");
             return;
         }
         cloud.input();
@@ -95,6 +96,7 @@ public class MainGame implements Screen {
 
     public void update(){
         if(cloud.isDead()){
+            music.stop();
             gameOver.input();
             if(gameOver.canRestart()){
                 game.setScreen(new MainMenu(game));

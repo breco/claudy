@@ -3,7 +3,7 @@ package huds;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Preferences;
-import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -59,7 +59,7 @@ public class StageCleared {
             start();
             cleared = true;
             flowerBonus = MainGame.allies.getFlowerbonus();
-            Music win = Gdx.audio.newMusic(Gdx.files.internal("sound effects/win-4.mp3"));
+            Sound win = Gdx.audio.newSound(Gdx.files.internal("sound effects/win-4.mp3"));
             win.play();
             Preferences prefs = Gdx.app.getPreferences("Preferences");
             prefs.putInteger("stage",prefs.getInteger("stage")+1);

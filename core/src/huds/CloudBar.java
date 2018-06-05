@@ -14,7 +14,6 @@ import utils.Animator;
 
 public class CloudBar {
     private Cloud cloud;
-    Texture texture;
     Animator animator;
     public CloudBar(Cloud cloud){
         this.cloud = cloud;

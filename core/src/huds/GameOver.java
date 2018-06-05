@@ -2,6 +2,7 @@ package huds;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -31,6 +32,8 @@ public class GameOver {
     }
     public void start(){
         Gdx.app.log("START","!");
+        Sound win = Gdx.audio.newSound(Gdx.files.internal("sound effects/lose.ogg"));
+        win.play();
         time.setChronometer(10);
         time.start();
     }

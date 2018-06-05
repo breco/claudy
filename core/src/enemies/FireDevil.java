@@ -13,8 +13,9 @@ import utils.Animator;
 public class FireDevil extends Enemy {
 
     //MOVE variables
-    String dir = "R";
+    String dirX = "R",dirY = "U";
     int SPEED_X = 2;
+    float SPEED_Y = 1.5f;
 
     //SHOOT variables
     int shootTimer = 0;
@@ -63,16 +64,28 @@ public class FireDevil extends Enemy {
 
     @Override
     public void move() {
-        if(dir.equals("R")){
+        if(dirX.equals("R")){
             setX(getX()+SPEED_X);
             if(getX()>= Principal.WIDTH*6/11){
-                dir ="L";
+                dirX ="L";
             }
         }
-        else if(dir.equals("L")){
+        else if(dirX.equals("L")){
             setX(getX()-SPEED_X);
             if(getX() <= Principal.WIDTH/11){
-                dir = "R";
+                dirX = "R";
+            }
+        }
+        if(dirY.equals("U")){
+            setY(getY()+SPEED_Y);
+            if(getY() >= Principal.HEIGHT/2 - getHeight()){
+                dirY = "D";
+            }
+        }
+        else if(dirY.equals("D")){
+            setY(getY()-SPEED_Y);
+            if(getY() <= Principal.HEIGHT/3 - getHeight()){
+                dirY = "U";
             }
         }
     }
