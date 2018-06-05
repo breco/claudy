@@ -38,7 +38,6 @@ public class Enemies {
         }
         for(Enemy enemy : enemies){
             if(enemy.onScreen() && !onScreenEnemies.contains(enemy,false) && !deadEnemies.contains(enemy,false)){
-                //Gdx.app.log("ENEMY ENTERS THE SCREEN",""+enemy.appearance);
                 onScreenEnemies.add(enemy);
                 enemies.removeValue(enemy,false);
             }

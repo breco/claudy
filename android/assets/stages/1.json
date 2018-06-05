@@ -1,7 +1,7 @@
 {
       "enemies" : [
 
-            {"clase" : "enemies.FireNormal", "posx" : 580, "posy" : 400, "moveType" : "zig-zag-R-M-N","appearance": 0.8},
+            /*{"clase" : "enemies.FireNormal", "posx" : 580, "posy" : 400, "moveType" : "zig-zag-R-M-N","appearance": 0.8},
             {"clase" : "enemies.FireNormal", "posx" : 530, "posy" : 400, "moveType" : "zig-zag-R-M-N","appearance": 1},
             {"clase" : "enemies.FireNormal", "posx" : 480, "posy" : 400, "moveType" : "zig-zag-R-M-N","appearance": 1.2},
             {"clase" : "enemies.FireNormal", "posx" : 430, "posy" : 400, "moveType" : "zig-zag-R-M-P","appearance": 1.4},
@@ -77,7 +77,7 @@
             {"clase" : "enemies.FireNormal", "posx" : 430, "posy" : 150, "moveType" : "straight-L","appearance": 23},
             {"clase" : "enemies.FireNormal", "posx" : 480, "posy" : 150, "moveType" : "straight-L","appearance": 24},
             {"clase" : "enemies.FireNormal", "posx" : 530, "posy" : 150, "moveType" : "straight-L","appearance": 25},
-            {"clase" : "enemies.FireNormal", "posx" : 580, "posy" : 150, "moveType" : "straight-L","appearance": 26},
+            {"clase" : "enemies.FireNormal", "posx" : 580, "posy" : 150, "moveType" : "straight-L","appearance": 26},*/
 
             {"clase" : "enemies.FireNormal", "posx" : 30, "posy" : 200, "moveType" : "static","appearance": 0},
             {"clase" : "enemies.FireNormal", "posx" : 80, "posy" : 200, "moveType" : "static","appearance": 0},
@@ -93,9 +93,9 @@
             {"clase" : "enemies.FireNormal", "posx" : 580, "posy" : 200, "moveType" : "static","appearance": 0}
       ],
       "allies": [
-            {"clase" : "allies.Flower", "posx" : 80, "posy" : 0},
+            //{"clase" : "allies.Flower", "posx" : 80, "posy" : 0},
             {"clase" : "allies.Flower", "posx" : 230, "posy" : 0},
-            {"clase" : "allies.Flower", "posx" : 380, "posy" : 0},
+            //{"clase" : "allies.Flower", "posx" : 380, "posy" : 0},
             {"clase" : "allies.Flower", "posx" : 530, "posy" : 0}
       ],
       "cloud" : {

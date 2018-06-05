@@ -74,20 +74,22 @@ public class Fire extends Enemy {
             setDamage(CURRENT_HP);
             return;
         }
+        for(Ally ally : MainGame.allies.getAllies()){
+            if(ally.getBoundingRectangle().overlaps(getBoundingRectangle())){
+                ally.setDamage(getATK());
+                setDamage(CURRENT_HP);
+                return;
+            }
+        }
     }
 
     @Override
     public void update() {
         move();
-        for(Ally ally : MainGame.allies.getAllies()){
-            if(ally.getBoundingRectangle().overlaps(getBoundingRectangle())){
-                ally.setDamage(getATK());
-                setDamage(100);
-                return;
-            }
-        }
+
         shoot();
         attack();
+        destroy();
     }
 
     public void moveSetup(){
@@ -226,8 +228,17 @@ public class Fire extends Enemy {
             }
         }
         setY(getY() - SPEED_Y);
+
+    }
+
+    public void destroy(){
         if(getY() <= 0){
-            setDamage(100);
+            setDamage(CURRENT_HP);
+            LittleFire lf = new LittleFire(((int) (getX()+getWidth()/2)),0,"LR",0);
+            if(lf.canLive()){
+                MainGame.enemies.add(lf);
+            }
+
         }
     }
 
