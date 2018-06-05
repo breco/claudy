@@ -53,8 +53,8 @@ public class Cloud extends Sprite {
     public int LIFES;
     private Counter impactCounter;
     private int inmunityTimer = 150;
-    public int HP = 1;
-    public int CURRENT_HP = HP;
+    public int MAX_HP = 8;
+    public int HP = MAX_HP;
 
     //SPECIAL SHOT variables
 
@@ -72,7 +72,8 @@ public class Cloud extends Sprite {
         dying = new Animator(new Texture(Gdx.files.internal("allies/cloud/"+name+"Defeat.png")),2,3,6,0.15f,size3);
         impactCounter = new Counter();
         Preferences prefs = Gdx.app.getPreferences("Preferences");
-        LIFES = prefs.getInteger("lifes");
+        LIFES = 1;
+        HP = prefs.getInteger("HP");
     }
     public void update(){
         move();
@@ -188,9 +189,9 @@ public class Cloud extends Sprite {
 
         if(isDead() || impactCounter.started()) return;
         impactCounter.setLimit(inmunityTimer);
-        CURRENT_HP -= dmg;
-        if (CURRENT_HP <= 0) {
-            CURRENT_HP = 0;
+        HP -= dmg;
+        if (HP <= 0) {
+            HP = 0;
             LIFES -=1;
             if(LIFES == 0){
                 dyingTimer = new TimeManager();
@@ -199,7 +200,7 @@ public class Cloud extends Sprite {
                 MainGame.gameOver.start();
             }
             else{
-                CURRENT_HP = HP;
+                HP = MAX_HP;
             }
 
         }
@@ -217,7 +218,7 @@ public class Cloud extends Sprite {
 
     }
     public boolean isDead(){
-        if(CURRENT_HP <= 0 || MainGame.allies.length() == 0) return true;
+        if(HP <= 0 || MainGame.allies.length() == 0) return true;
         return false;
     }
     public TextureRegion getTextureRegion(){
@@ -253,5 +254,13 @@ public class Cloud extends Sprite {
     }
     public int getMAX_AP(){
         return MAX_AP;
+    }
+
+    public int getHP() {
+        return HP;
+    }
+
+    public int getMAX_HP() {
+        return MAX_HP;
     }
 }

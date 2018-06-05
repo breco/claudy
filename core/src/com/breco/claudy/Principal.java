@@ -20,7 +20,7 @@ public class Principal extends Game {
 		HEIGHT = Gdx.graphics.getHeight();
 		Preferences prefs = Gdx.app.getPreferences("Preferences");
 		prefs.putInteger("stage",1);
-		prefs.putInteger("lifes",5);
+		prefs.putInteger("HP",8);
 		prefs.putBoolean("new",false);
 		prefs.flush();
 		this.setScreen(new MainMenu(this));

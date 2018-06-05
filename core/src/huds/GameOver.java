@@ -27,7 +27,7 @@ public class GameOver {
         time = new TimeManager();
     }
     public void draw(SpriteBatch batch){
-        font.draw(batch, "GAME OVER", Principal.WIDTH/3f, Principal.HEIGHT/1.8f);
+        font.draw(batch, "GAME OVER", Principal.WIDTH*3/8, Principal.HEIGHT/1.8f);
 
     }
     public void start(){

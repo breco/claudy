@@ -64,7 +64,7 @@ public class StageCleared {
             Preferences prefs = Gdx.app.getPreferences("Preferences");
             prefs.putInteger("stage",prefs.getInteger("stage")+1);
             prefs.putInteger("highscore",MainGame.highscore.getScore()+flowerBonus);
-            prefs.putInteger("lifes",MainGame.cloud.LIFES);
+            prefs.putInteger("HP",MainGame.cloud.getHP());
             prefs.flush();
         }
 
