@@ -68,6 +68,14 @@ public class Fire extends Enemy {
         }
     }
 
+    public void attack(){
+        if(!MainGame.cloud.inmunity() && MainGame.cloud.getBoundingRectangle().overlaps(getBoundingRectangle())){
+            MainGame.cloud.setDamage(getATK());
+            setDamage(CURRENT_HP);
+            return;
+        }
+    }
+
     @Override
     public void update() {
         move();
@@ -79,6 +87,7 @@ public class Fire extends Enemy {
             }
         }
         shoot();
+        attack();
     }
 
     public void moveSetup(){

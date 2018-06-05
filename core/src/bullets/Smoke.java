@@ -20,7 +20,7 @@ public class Smoke extends Bullet {
         //
     }
     public void attack(){
-            if(MainGame.cloud.getBoundingRectangle().overlaps(getBoundingRectangle())){
+            if(!MainGame.cloud.inmunity() && MainGame.cloud.getBoundingRectangle().overlaps(getBoundingRectangle())){
 
                 MainGame.cloud.setDamage(ATK);
                 MainGame.bullets.removeForced(this);

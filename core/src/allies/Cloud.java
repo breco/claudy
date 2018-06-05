@@ -263,4 +263,8 @@ public class Cloud extends Sprite {
     public int getMAX_HP() {
         return MAX_HP;
     }
+
+    public boolean inmunity(){
+        return impactCounter.started();
+    }
 }
