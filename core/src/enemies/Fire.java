@@ -234,7 +234,7 @@ public class Fire extends Enemy {
     public void destroy(){
         if(getY() <= 0){
             setDamage(CURRENT_HP);
-            LittleFire lf = new LittleFire(((int) (getX()+getWidth()/2)),0,"LR",0);
+            LittleFire lf = new LittleFire(((int) (getX()+getWidth()/2-8)),0,"LR",0);
             if(lf.canLive()){
                 MainGame.enemies.add(lf);
             }

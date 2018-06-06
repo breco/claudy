@@ -69,7 +69,7 @@ public class Enemies {
     public int length(){
         int length = 0;
         for(Enemy enemy : onScreenEnemies){
-            if(enemy instanceof ThunderCloud) continue;
+            if(enemy instanceof ThunderCloud || enemy instanceof LittleFire) continue;
             length++;
         }
         return length + dying.size;

@@ -41,13 +41,13 @@ public class LittleFire extends Enemy {
         if(shotTimer >= shootInterval){
             fired = true;
             LittleFire lf = null;
-            if(replica.contains("R") && getX() + getWidth() <= Principal.WIDTH){
+            if(replica.contains("R") && getX() + getWidth() <= Principal.WIDTH - 16){
                 lf = new LittleFire((int) (getX()+getWidth()),0,"R",0);
                 if(lf.canLive()){
                     MainGame.enemies.add(lf);
                 }
             }
-            if(replica.contains("L") && getX()-getWidth() >= 0){
+            if(replica.contains("L") && getX()-getWidth() >= 16){
                 lf = new LittleFire((int) (getX()-getWidth()),0,"L",0);
                 if(lf.canLive()){
                     MainGame.enemies.add(lf);
