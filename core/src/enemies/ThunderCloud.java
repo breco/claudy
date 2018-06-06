@@ -28,7 +28,7 @@ public class ThunderCloud extends Enemy {
     int[] bulletSize = {8,8};
 
     public ThunderCloud(int x, int y,String moveType,float appearance) {
-        super(x, y, 5, 1, appearance, 1000);
+        super(x, y, 5, 1, appearance, 500);
         int[] size = {16,16};
         int[] size2 = {8,8};
         setSize(40,40);

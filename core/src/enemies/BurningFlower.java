@@ -22,7 +22,7 @@ public class BurningFlower extends Enemy {
     String moveType;
 
     public BurningFlower(int x, int y, String moveType) {
-        super(x, y, 3, 1, 1, 0);
+        super(x, y, 3, 1, 1, 50);
         this.moveType = moveType;
         int[] size = {24,24};
         setSize(54,54);

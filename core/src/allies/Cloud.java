@@ -8,7 +8,6 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.breco.claudy.Principal;
 
@@ -96,7 +95,6 @@ public class Cloud extends Sprite {
         }
 
         if(Gdx.input.isKeyPressed(Input.Keys.UP)){
-            Gdx.app.log("UP","PRESSEd");
             changeDirY("U");
         }
         else if(Gdx.input.isKeyPressed(Input.Keys.DOWN)){
@@ -221,10 +219,7 @@ public class Cloud extends Sprite {
         if(HP <= 0 || MainGame.allies.length() == 0) return true;
         return false;
     }
-    public TextureRegion getTextureRegion(){
 
-        return animator.getStaticTextureRegion();
-    }
     //ANIMATION METHODS
 
     public void animation(){

@@ -71,7 +71,6 @@ public class MainGame implements Screen {
         //TEST
 
 
-        //cloud = new Cloud(game.WIDTH/2,game.HEIGHT-game.HEIGHT/4);
         StageLoader loader = new StageLoader();
         loader.loadStage(this);
         cloudBar = new CloudBar(cloud);

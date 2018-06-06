@@ -93,7 +93,6 @@ public class FireDevil extends Enemy {
     @Override
     public void draw(SpriteBatch batch) {
         if(isDead()){
-            Gdx.app.log("Drawing","dying");
             dyingAnimator.draw(this,batch);
             return;
         }
@@ -106,6 +105,5 @@ public class FireDevil extends Enemy {
     public void addBulletSpeed(int amount){
         bulletSpeed+=amount;
         shootInterval-=2;
-        Gdx.app.log("shootInterval=",shootInterval+"");
     }
 }

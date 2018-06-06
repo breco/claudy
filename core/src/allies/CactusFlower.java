@@ -24,7 +24,7 @@ public class CactusFlower extends Ally {
         super(x,y);
         HP = 1;
         ATK = 1;
-        points = 10000;
+        points = 2000;
         CURRENT_HP = HP;
         int[] size = {16,16};
         setSize(54,54);

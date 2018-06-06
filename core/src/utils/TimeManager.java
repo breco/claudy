@@ -11,6 +11,7 @@ public class TimeManager {
     private float chronometer;
     private boolean started;
     public TimeManager(){
+        chronometer = 0;
         pauseInit = 0;
         totalPauseTime = 0;
         startTime = 0;
@@ -42,6 +43,7 @@ public class TimeManager {
         this.chronometer = seconds;
     }
     public boolean ring(){
+        if(!started) return false;
         if(getTime()>= chronometer) return true;
         return false;
     }

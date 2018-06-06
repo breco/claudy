@@ -21,7 +21,7 @@ public class Flower extends Ally {
         super(x,y);
         HP = 1;
         ATK = 0;
-        points = 5000;
+        points = 1000;
         CURRENT_HP = HP;
         int[] size = {16,16};
         setSize(42,42);

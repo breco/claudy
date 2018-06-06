@@ -28,6 +28,9 @@ public class Allies {
         for(Ally ally : dying){
             if(ally.dyingTimer != null && ally.dyingTimer.ring()){
                 dying.removeValue(ally,false);
+                if(allies.size == 0 && dying.size == 0){
+                    MainGame.gameOver.start();
+                }
                 if(ally instanceof Flower && ((Flower) ally).isGrowing()){
                     MainGame.allies.add(new CactusFlower(((int) ally.getX()), ((int) ally.getY())));
                 }
@@ -49,9 +52,6 @@ public class Allies {
     public void remove(Ally ally){
         allies.removeValue(ally, false);
         dying.add(ally);
-        if(allies.size == 0 && dying.size == 0){
-            MainGame.gameOver.start();
-        }
     }
     public Array<Ally> getAllies(){
         return allies;

@@ -93,7 +93,6 @@ public class Fire extends Enemy {
     }
 
     public void moveSetup(){
-        Gdx.app.log("MOVESETUP",moveType);
         if(moveType.contains("zig-zag")){
             zigzagSetup();
         }
@@ -102,7 +101,6 @@ public class Fire extends Enemy {
             start_y = final_y;
         }
         else if(moveType.contains("straight")){
-            Gdx.app.log("STRAIGHT","!!");
             if(moveType.contains("R")){
                 start_x = Principal.WIDTH;
             }

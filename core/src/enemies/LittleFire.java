@@ -15,7 +15,7 @@ public class LittleFire extends Enemy {
     boolean fired = false;
     String replica;
     public LittleFire(int x, int y,String moveType,float appearance){
-        super(x,y,1,1,appearance,100);
+        super(x,y,1,1,appearance,10);
         replica = moveType;
         shotTimer = 0;
         shootInterval = 50;
@@ -40,7 +40,7 @@ public class LittleFire extends Enemy {
         shotTimer++;
         if(shotTimer >= shootInterval){
             fired = true;
-            LittleFire lf = null;
+            LittleFire lf;
             if(replica.contains("R") && getX() + getWidth() <= Principal.WIDTH - 16){
                 lf = new LittleFire((int) (getX()+getWidth()),0,"R",0);
                 if(lf.canLive()){
