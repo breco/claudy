@@ -19,6 +19,7 @@ public abstract class Ally extends Sprite {
     int ATK;
     int CURRENT_HP;
     int points;
+
     //others
     int appearance;
 
@@ -62,7 +63,6 @@ public abstract class Ally extends Sprite {
     public void setDyingAnimator(String direction,float time, int width, int height, int rows, int columns, float speed){
         dyingDuration = time;
         int[] size = {width, height};
-        Gdx.app.log("size",size[0]+","+size[1]);
         dyingAnimator = new Animator(new Texture(Gdx.files.internal(direction)),rows,columns,rows*columns,speed,size);
     }
     public boolean isEaten(){

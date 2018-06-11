@@ -21,7 +21,7 @@ public class LittleFire extends Enemy {
         shootInterval = 50;
         int[] size = {8,8};
         setSize(16,16);
-        animator = new Animator(new Texture(Gdx.files.internal("bullets/Fireball.png")),1,2,2,0.5f,size);
+        animator = new Animator(new Texture(Gdx.files.internal("enemies/LittleFire.png")),1,2,2,0.5f,size);
     }
 
     public void attack(){

@@ -6,6 +6,7 @@ import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
 import com.breco.claudy.Principal;
 
+import allies.CactusFlower;
 import allies.Cloud;
 import allies.Flower;
 import enemies.DarkCloud;
@@ -13,6 +14,7 @@ import enemies.Fire;
 import enemies.FireDevil;
 import enemies.FireEater;
 import enemies.ThunderCloud;
+import powerups.ExtraHP;
 import screens.MainGame;
 
 public class StageLoader {
@@ -94,8 +96,25 @@ public class StageLoader {
             if(t.clase.equals("allies.Flower")){
                 game.allies.add(new Flower(t.posx,t.posy));
             }
+            else if(t.clase.equals("allies.CactusFlower")){
+                game.allies.add(new CactusFlower(t.posx,t.posy));
+            }
             i++;
         }
+
+        JsonValue powerups = base.get("powerups");
+        i = 0;
+        while(powerups.get(i) != null){
+            t.clase = powerups.get(i).get("clase").asString();
+            t.posx = powerups.get(i).get("posx").asInt();
+            t.posy = powerups.get(i).get("posy").asInt();
+            t.appearance = powerups.get(i).get("appearance").asFloat();
+            if(t.clase.equals("powerups.ExtraHP")){
+                game.powerups.add(new ExtraHP(t.posx,t.posy,t.appearance));
+            }
+            i++;
+        }
+
     }
 
 }

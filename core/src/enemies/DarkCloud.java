@@ -69,6 +69,7 @@ public class DarkCloud extends Enemy{
 
     @Override
     public void move() {
+        if(moveType.equals("static")) return;
         if(moveType.equals("windy")) return;
         if(dirX.equals("R")){
             setX(getX()+SPEED_X);

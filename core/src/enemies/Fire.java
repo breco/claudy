@@ -113,12 +113,10 @@ public class Fire extends Enemy {
     }
     public void zigzagSetup(){
         if(moveType.contains("R")){
-            Gdx.app.log("CONTAINS","R");
             start_x = ((int) (0 - getWidth())); // 0 || Principal.WIDTH
             zigzagHorizontal = true;
         }
         else if(moveType.contains("L")){
-            Gdx.app.log("CONTAINS","L");
             zigzagHorizontal = false;
             start_x = Principal.WIDTH;
         }

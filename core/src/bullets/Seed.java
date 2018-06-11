@@ -47,7 +47,7 @@ public class Seed extends Bullet {
     }
     public void destroy(){
         if(destroyed) return;
-        if(getY() >= Principal.HEIGHT/2 + Principal.HEIGHT/8) {
+        if(getY() >= Principal.HEIGHT/4 - getHeight()) {
             destroyed = true;
             dyingTimer = new TimeManager();
             dyingTimer.setChronometer(dyingDuration);

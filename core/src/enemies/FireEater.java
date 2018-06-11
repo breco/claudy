@@ -8,6 +8,8 @@ import com.breco.claudy.Principal;
 import java.util.Random;
 
 import allies.Ally;
+import allies.CactusFlower;
+import allies.Flower;
 import bullets.Smoke;
 import screens.MainGame;
 import utils.Animator;
@@ -64,9 +66,16 @@ public class FireEater extends Enemy {
     }
 
     public void attack(){
+        if(isDead()) return;
         for(Ally ally : MainGame.allies.getAllies()){
             if(ally.getBoundingRectangle().overlaps(getBoundingRectangle())){
-                ally.setDyingAnimator("transformations/FlowerToBurning.png",1.3f,24,24,2,4,0.4f);
+                if(ally instanceof Flower){
+                    ally.setDyingAnimator("transformations/FlowerToBurning.png",1.3f,24,24,2,4,0.4f);
+                }
+
+                else if(ally instanceof CactusFlower){
+                    ally.setDyingAnimator("transformations/CactusToBurning.png",1.5f,24,24,3,3,0.35f);
+                }
                 setDamage(100);
                 ally.setEaten(true);
                 ally.setDamage(100);

@@ -27,9 +27,8 @@ public class BurningFlower extends Enemy {
         int[] size = {24,24};
         setSize(54,54);
         animator = new Animator(new Texture(Gdx.files.internal("enemies/Burning Flower.png")),1,2,2,0.5f,size);
-        int[] size2= {8,8};
-        dyingAnimator = new Animator(new Texture(Gdx.files.internal("enemies/EnemyDefeat.png")),1,2,2,0.2f,size2);
-        dyingDuration = 0.3f;
+        dyingAnimator = new Animator(new Texture(Gdx.files.internal("enemies/BurningFlowerDefeat.png")),2,3,6,0.2f,size);
+        dyingDuration = 1f;
 
 
 

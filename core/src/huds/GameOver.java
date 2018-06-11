@@ -33,7 +33,7 @@ public class GameOver {
     public void start(){
         Sound win = Gdx.audio.newSound(Gdx.files.internal("sound effects/lose.ogg"));
         win.play();
-        time.setChronometer(3);
+        time.setChronometer(5);
         time.start();
     }
     public void update(){

@@ -98,6 +98,9 @@
             {"clase" : "allies.Flower", "posx" : 380, "posy" : 0},
             {"clase" : "allies.Flower", "posx" : 530, "posy" : 0}
       ],
+      "powerups": [
+            {"clase" : "powerups.ExtraHP", "posx" : 0, "posy" : 0, "appearance" : 20}
+      ],
       "cloud" : {
             "name" : "Cloud",
             "width" : 16,

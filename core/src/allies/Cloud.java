@@ -183,6 +183,12 @@ public class Cloud extends Sprite {
         Waterdrop wd = new Waterdrop(bulletAnimator, ((int) (getX()+getWidth()/3)), ((int) getY()));
         MainGame.bullets.add(wd);
     }
+    public void healHP(int amount){
+        HP += amount;
+        if(HP > MAX_HP){
+            HP = MAX_HP;
+        }
+    }
     public void setDamage(int dmg) {
 
         if(isDead() || impactCounter.started()) return;

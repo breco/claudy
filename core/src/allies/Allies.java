@@ -1,5 +1,6 @@
 package allies;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
 
@@ -28,14 +29,18 @@ public class Allies {
         for(Ally ally : dying){
             if(ally.dyingTimer != null && ally.dyingTimer.ring()){
                 dying.removeValue(ally,false);
-                if(allies.size == 0 && dying.size == 0){
-                    MainGame.gameOver.start();
-                }
                 if(ally instanceof Flower && ((Flower) ally).isGrowing()){
                     MainGame.allies.add(new CactusFlower(((int) ally.getX()), ((int) ally.getY())));
                 }
-                if(ally instanceof Flower && ally.isEaten()){
+                if(allies.size == 0 && dying.size == 0){
+                    Gdx.app.log("allies.size==0",""+allies.size);
+                    Gdx.app.log("dying.size==0",""+dying.size);
+                    MainGame.gameOver.start();
+                }
+
+                if((ally instanceof Flower || ally instanceof CactusFlower) && ally.isEaten()){
                     MainGame.enemies.add(new BurningFlower(((int) ally.getX()), ((int) ally.getY()),""));
+                    ally.setEaten(false);
                 }
             }
         }

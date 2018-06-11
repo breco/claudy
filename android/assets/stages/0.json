@@ -1,0 +1,28 @@
+{
+  "enemies" : [
+    {"clase" : "enemies.FireEater", "posx" : 200, "posy" : 300, "moveType": "static","appearance": 0},
+    {"clase" : "enemies.FireEater", "posx" : 300, "posy" : 300, "moveType": "static","appearance": 0},
+    {"clase" : "enemies.FireNormal", "posx" :500, "posy" : 50, "moveType": "static","appearance": 0},
+    {"clase" : "enemies.FireNormal", "posx" : 500, "posy" : 200, "moveType": "static","appearance": 0}
+
+
+  ],
+  "allies" : [
+    //{"clase" : "allies.Flower", "posx" : 1000, "posy" : 0}
+    {"clase" : "allies.CactusFlower", "posx" : 200, "posy" : 0},
+    {"clase" : "allies.Flower", "posx" : 300, "posy" : 0},
+    {"clase" : "allies.Flower", "posx" : 400, "posy" : 0}
+  ],
+  "powerups": [
+    {"clase" : "powerups.ExtraHP", "posx" : 250, "posy" : 0, "appearance" : 6}
+  ],
+  "cloud" : {
+    "name" : "CloudFlower",
+    "width" : 16,
+    "height" : 32
+  },
+  "background" : "bgBoss",
+  "ost": "boss"
+}
+
+

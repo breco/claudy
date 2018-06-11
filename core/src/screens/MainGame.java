@@ -17,6 +17,7 @@ import huds.CloudBar;
 import huds.GameOver;
 import huds.HighScore;
 import huds.StageCleared;
+import powerups.Powerups;
 import utils.StageLoader;
 import utils.TimeManager;
 
@@ -31,6 +32,7 @@ public class MainGame implements Screen {
     public static Bullets bullets;
     public static Enemies enemies;
     public static Allies allies;
+    public static Powerups powerups;
     public static Cloud cloud;
 
     //HUD
@@ -61,6 +63,7 @@ public class MainGame implements Screen {
         bullets = new Bullets();
         enemies = new Enemies();
         allies = new Allies();
+        powerups = new Powerups();
 
         //HUD
         highscore = new HighScore();
@@ -110,14 +113,15 @@ public class MainGame implements Screen {
             if(stageCleared.canNextStage()){
                 game.setScreen(new MainGame(game));
                 dispose();
-                return;
+
             }
+            return;
         }
         cloud.update();
         bullets.update();
         enemies.update();
         allies.update();
-
+        powerups.update();
         //HUD
 
         attackPowerBar.update();
@@ -130,6 +134,7 @@ public class MainGame implements Screen {
         cloud.draw(game.batch);
         enemies.draw(game.batch);
         allies.draw(game.batch);
+        powerups.draw(game.batch);
         highscore.draw(game.batch);
         if(cloud.isDead()){
             gameOver.draw(game.batch);
