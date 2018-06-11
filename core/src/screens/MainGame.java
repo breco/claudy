@@ -1,6 +1,7 @@
 package screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
@@ -68,7 +69,7 @@ public class MainGame implements Screen {
         //HUD
         highscore = new HighScore();
         gameOver = new GameOver();
-        stageCleared = new StageCleared(enemies, 5);
+        stageCleared = new StageCleared(enemies, 25);
 
 
         //TEST
@@ -92,6 +93,9 @@ public class MainGame implements Screen {
             cloud.changeDirX("");
             cloud.changeDirY("");
             return;
+        }
+        if(Gdx.input.isKeyJustPressed(Input.Keys.SPACE)){
+            Gdx.app.log("enemy size", enemies.length()+"");
         }
         cloud.input();
     }

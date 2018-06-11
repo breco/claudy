@@ -1,9 +1,20 @@
 {
   "enemies" : [
-    {"clase" : "enemies.FireEater", "posx" : 200, "posy" : 300, "moveType": "static","appearance": 0},
-    {"clase" : "enemies.FireEater", "posx" : 300, "posy" : 300, "moveType": "static","appearance": 0},
-    {"clase" : "enemies.FireNormal", "posx" :500, "posy" : 50, "moveType": "static","appearance": 0},
-    {"clase" : "enemies.FireNormal", "posx" : 500, "posy" : 200, "moveType": "static","appearance": 0}
+    //{"clase" : "enemies.FireEater", "posx" : 200, "posy" : 300, "moveType": "static","appearance": 0},
+    //{"clase" : "enemies.FireEater", "posx" : 300, "posy" : 300, "moveType": "static","appearance": 0},
+    //{"clase" : "enemies.FireNormal", "posx" :500, "posy" : 50, "moveType": "static","appearance": 0},
+    {"clase" : "enemies.FireNormal", "posx" : 580, "posy" : 400, "moveType" : "zig-zag-R-M-C","appearance": 0.8}
+    /*{"clase" : "enemies.FireNormal", "posx" : 530, "posy" : 400, "moveType" : "zig-zag-R-M-C","appearance": 1},
+    {"clase" : "enemies.FireNormal", "posx" : 480, "posy" : 400, "moveType" : "zig-zag-R-M-C","appearance": 1.2},
+    {"clase" : "enemies.FireNormal", "posx" : 430, "posy" : 400, "moveType" : "zig-zag-R-M-C","appearance": 1.4},
+    {"clase" : "enemies.FireNormal", "posx" : 380, "posy" : 400, "moveType" : "zig-zag-R-M-C","appearance": 1.6},
+    {"clase" : "enemies.FireNormal", "posx" : 330, "posy" : 400, "moveType" : "zig-zag-R-M-G","appearance": 1.8},
+    {"clase" : "enemies.FireNormal", "posx" : 280, "posy" : 400, "moveType" : "zig-zag-R-M-G","appearance": 2},
+    {"clase" : "enemies.FireNormal", "posx" : 230, "posy" : 400, "moveType" : "zig-zag-R-M-G","appearance": 2.2},
+    {"clase" : "enemies.FireNormal", "posx" : 180, "posy" : 400, "moveType" : "zig-zag-R-M-G","appearance": 2.4},
+    {"clase" : "enemies.FireNormal", "posx" : 130, "posy" : 400, "moveType" : "zig-zag-R-M-G","appearance": 2.6},
+    {"clase" : "enemies.FireNormal", "posx" : 80, "posy" : 400, "moveType" : "zig-zag-R-M-G","appearance": 2.8},
+    {"clase" : "enemies.FireNormal", "posx" : 30, "posy" : 400, "moveType" : "zig-zag-R-M-G","appearance": 3},*/
 
 
   ],

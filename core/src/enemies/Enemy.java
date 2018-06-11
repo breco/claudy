@@ -3,6 +3,7 @@ package enemies;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import movers.Mover;
 import screens.MainGame;
 import utils.Animator;
 import utils.TimeManager;
@@ -25,6 +26,10 @@ public abstract class Enemy extends Sprite {
     Animator dyingAnimator;
     TimeManager dyingTimer;
     float dyingDuration;
+    //TEST
+    protected Mover mover;
+    int SPEED_X;
+    float SPEED_Y;
     public Enemy(int x, int y, int HP, int ATK, float appearance,int points){
         setPosition(x, y);
 
@@ -58,6 +63,11 @@ public abstract class Enemy extends Sprite {
     }
 
     public int getHP(){return CURRENT_HP;}
+
+    public void setMover(Mover mover) {
+        this.mover = mover;
+        mover.setSpeed(SPEED_X,SPEED_Y);
+    }
 
     public boolean isDead(){
         if(CURRENT_HP <= 0) return true;

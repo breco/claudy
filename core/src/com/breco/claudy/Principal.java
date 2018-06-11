@@ -19,7 +19,7 @@ public class Principal extends Game {
 		WIDTH = Gdx.graphics.getWidth();
 		HEIGHT = Gdx.graphics.getHeight();
 		Preferences prefs = Gdx.app.getPreferences("Preferences");
-		prefs.putInteger("stage",0);
+		prefs.putInteger("stage",1);
 		prefs.putInteger("HP",8);
 		prefs.putBoolean("new",false);
 		prefs.flush();
