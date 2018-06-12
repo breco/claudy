@@ -5,6 +5,7 @@ import movers.CircularMover;
 import movers.GravityMover;
 import movers.Mover;
 import movers.NormalMover;
+import movers.SpiralMover;
 import movers.StraightMover;
 import movers.ZigzagMover;
 
@@ -24,6 +25,9 @@ public class MovementManager {
         }
         else if(patron.contains("straight")){
             return new StraightMover(owner,patron,final_x,final_y);
+        }
+        else if(patron.contains("spiral")){
+            return new SpiralMover(owner,patron,final_x,final_y);
         }
         return null;
     }

@@ -28,7 +28,7 @@ public abstract class Enemy extends Sprite {
     float dyingDuration;
     //TEST
     protected Mover mover;
-    int SPEED_X;
+    float SPEED_X;
     float SPEED_Y;
     public Enemy(int x, int y, int HP, int ATK, float appearance,int points){
         setPosition(x, y);

@@ -27,17 +27,16 @@ public class Fire extends Enemy {
     //MOVE variables
     int final_x;
     int final_y;
-    String moveType;
+    String patron;
 
-    public Fire(int x, int y,String moveType,float appearance){
+    public Fire(int x, int y,String patron,float appearance){
         super(x,y,1,1,appearance,100);
         final_x = x;
         final_y = y;
-        SPEED_X = 2;
+        SPEED_X = 4;
         SPEED_Y = 0.15f;
-        this.moveType = moveType;
-        Gdx.app.log("moveType",moveType+"_");
-        mover = MovementManager.getMover(this,moveType, x, y);
+        this.patron = patron;
+        mover = MovementManager.getMover(this,patron, x, y);
         mover.setSpeed(SPEED_X,SPEED_Y);
         int[] size = {16,16};
         setSize(32,32);

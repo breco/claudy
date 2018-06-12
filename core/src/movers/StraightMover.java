@@ -9,7 +9,7 @@ public class StraightMover extends Mover{
     public StraightMover(Enemy owner, String patron, float final_x, float final_y) {
         super(owner, patron, final_x, final_y);
         finalPatron = "gravity";
-        SPEED_X = 3;
+        SPEED_X = 4;
         if(patron.contains("R")){
             start_x = Principal.WIDTH;
         }

@@ -24,6 +24,7 @@ public abstract class Mover {
                 finalPatron = "normal";
             }
 
+
     }
     public void setSpeed(float x, float y){
 
