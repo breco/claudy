@@ -1,7 +1,5 @@
 package movers;
 
-import com.badlogic.gdx.Gdx;
-
 import enemies.Enemy;
 
 public abstract class Mover {
@@ -30,7 +28,7 @@ public abstract class Mover {
 
         this.SPEED_X = x;
         this.SPEED_Y = y;
-        Gdx.app.log("SET SPEED",this.SPEED_X+","+this.SPEED_Y);
+
     }
     public abstract void  move();
 }

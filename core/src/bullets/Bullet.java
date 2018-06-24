@@ -15,7 +15,8 @@ import utils.TimeManager;
 
 public class Bullet extends Sprite {
     char oriX,oriY;
-    int SPD,ATK;
+    float SPD;
+    int ATK;
     public Animator animator;
     public String type;
     Rectangle rect;
@@ -51,7 +52,7 @@ public class Bullet extends Sprite {
     public void destroy(){
 
         if(getY() <= 0 && type.equals("ally")){
-            MainGame.cloud.CURRENT_SHOTS--;
+            MainGame.cloud.setCurrentShots(-1);
             MainGame.bullets.removeForced(this);
         } else if (getY() >= Principal.HEIGHT && type.equals("enemy")){
             MainGame.bullets.removeForced(this);
@@ -82,7 +83,7 @@ public class Bullet extends Sprite {
             oriY = dir;
         }
     }
-    public void setSPEED(int speed){
+    public void setSPEED(float speed){
         SPD = speed;
     }
 }

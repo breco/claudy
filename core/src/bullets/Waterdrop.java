@@ -29,7 +29,7 @@ public class Waterdrop extends Bullet {
             if(enemy.getBoundingRectangle().overlaps(getBoundingRectangle())){
                 enemy.setDamage(ATK);
                 MainGame.bullets.removeForced(this);
-                MainGame.cloud.CURRENT_SHOTS--;
+                MainGame.cloud.setCurrentShots(-1);
                 if (enemy.getHP() ==0){
                     MainGame.highscore.add(enemy.points);
                     MainGame.cloud.setAP(1);
@@ -43,8 +43,7 @@ public class Waterdrop extends Bullet {
             if(ally.getBoundingRectangle().overlaps(getBoundingRectangle())){
                 ally.getWater(ATK);
                 MainGame.bullets.removeForced(this);
-                MainGame.cloud.CURRENT_SHOTS--;
-
+                MainGame.cloud.setCurrentShots(-1);
             }
         }
     }

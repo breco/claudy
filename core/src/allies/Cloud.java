@@ -37,14 +37,17 @@ public class Cloud extends Sprite {
     Animator dying;
     TimeManager dyingTimer;
     //MOVE variables
-    public int SPEED = 3;
+    public float BASIC_SPEED = 3;
+    public float CURRENT_SPEED = BASIC_SPEED;
     public String dirX;
     public String dirY;
 
     //SHOT variables
-
-    public int MAX_SHOTS = 3;
-    public int CURRENT_SHOTS = 0;
+    private int BASIC_MAX_SHOTS = 3;
+    private int MAX_SHOTS = BASIC_MAX_SHOTS;
+    private int CURRENT_SHOTS = 0;
+    private float BASIC_BULLET_SPD = 8;
+    private float CURRENT_BULLET_SPD = BASIC_BULLET_SPD;
     int[] bulletSize = {8,8};
 
     //LIFE variables
@@ -53,7 +56,7 @@ public class Cloud extends Sprite {
     private Counter impactCounter;
     private int inmunityTimer = 150;
     public int MAX_HP = 8;
-    public int HP = MAX_HP;
+    public int HP;
 
     //SPECIAL SHOT variables
 
@@ -122,25 +125,25 @@ public class Cloud extends Sprite {
     }
     public void move(){
         if(dirX.equals("L")){
-            setX(getX()-SPEED);
+            setX(getX()-CURRENT_SPEED);
             if(getX() < 0){
                 setX(0);
             }
         }
         else if (dirX.equals("R")) {
-            setX(getX()+SPEED);
+            setX(getX()+CURRENT_SPEED);
             if(getX() + getWidth() > Principal.WIDTH){
                 setX(Principal.WIDTH - getWidth());
             }
         }
         if(dirY.equals("U")){
-            setY(getY()+SPEED);
+            setY(getY()+CURRENT_SPEED);
             if(getY() > Principal.HEIGHT - getHeight() - 50){
                 setY(Principal.HEIGHT - getHeight() - 50);
             }
         }
         else if(dirY.equals("D")){
-            setY(getY()-SPEED);
+            setY(getY()-CURRENT_SPEED);
             if(getY() < Principal.HEIGHT/2){
                 setY(Principal.HEIGHT/2);
             }
@@ -179,9 +182,34 @@ public class Cloud extends Sprite {
         if(CURRENT_SHOTS >= MAX_SHOTS) return;
         pium.play(0.5f);
         CURRENT_SHOTS++;
-        bulletAnimator = new Animator(new Texture(Gdx.files.internal("bullets/Waterdrop.png")),1,2,2,0.3f, bulletSize);
+        bulletAnimator = new Animator(new Texture(Gdx.files.internal("bullets/Waterdrop.png")),1,2,2, 0.3f, bulletSize);
         Waterdrop wd = new Waterdrop(bulletAnimator, ((int) (getX()+getWidth()/3)), ((int) getY()));
+        wd.setSPEED(CURRENT_BULLET_SPD);
         MainGame.bullets.add(wd);
+    }
+
+    //SETTERS
+
+    public void setCurrentShots(int amount){
+        CURRENT_SHOTS += amount;
+    }
+    public void setMaxBulletShots(int amount){
+        MAX_SHOTS = amount;
+    }
+    public void resetMaxBulletShots(){
+        MAX_SHOTS = BASIC_MAX_SHOTS;
+    }
+    public void setBulletSPD(float speed){
+        CURRENT_BULLET_SPD = speed;
+    }
+    public void resetBulletSPD(){
+        CURRENT_BULLET_SPD = BASIC_BULLET_SPD;
+    }
+    public void setSPEED(float speed){
+        CURRENT_SPEED = speed;
+    }
+    public void resetSPEED(){
+        CURRENT_SPEED = BASIC_SPEED;
     }
     public void healHP(int amount){
         HP += amount;
@@ -221,10 +249,7 @@ public class Cloud extends Sprite {
         }
 
     }
-    public boolean isDead(){
-        if(HP <= 0 || MainGame.allies.length() == 0) return true;
-        return false;
-    }
+
 
     //ANIMATION METHODS
 
@@ -243,13 +268,21 @@ public class Cloud extends Sprite {
             setColor(Color.WHITE);
         }
     }
+
+
+
+
+    // GETTERS
+
     @Override
     public Rectangle getBoundingRectangle(){
         return new Rectangle(getX()+getWidth()*0.1f,getY()+getHeight()*0.1f,getWidth()*0.8f,getHeight()*0.8f);
     }
 
-    // GETTERS
-
+    public boolean isDead(){
+        if(HP <= 0 || MainGame.allies.length() == 0) return true;
+        return false;
+    }
     public int getAP(){
         return AP;
     }

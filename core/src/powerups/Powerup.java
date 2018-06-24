@@ -9,6 +9,7 @@ import com.breco.claudy.Principal;
 import allies.Cloud;
 import screens.MainGame;
 import utils.Animator;
+import utils.TimeManager;
 
 public abstract class Powerup extends Sprite {
 
@@ -17,12 +18,15 @@ public abstract class Powerup extends Sprite {
     int SPEED;
     float appearance;
     Sound sound;
-
+    boolean used;
+    TimeManager timer;
     public Powerup(int x, int y, float appearance){
         setPosition(x,y);
         SPEED = 3;
         dirX = "R";
         dirY = "L";
+        used = false;
+        timer = new TimeManager();
         sound = Gdx.audio.newSound(Gdx.files.internal("sound effects/powerup.ogg"));
         this.appearance = appearance;
 
@@ -68,6 +72,7 @@ public abstract class Powerup extends Sprite {
     public abstract void draw(SpriteBatch batch);
 
     public void attack(){
+        if(used) return;
         if(MainGame.cloud.getBoundingRectangle().overlaps(getBoundingRectangle())){
             activate();
             effect(MainGame.cloud);

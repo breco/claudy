@@ -14,7 +14,10 @@ import enemies.Fire;
 import enemies.FireDevil;
 import enemies.FireEater;
 import enemies.ThunderCloud;
+import powerups.ExtraAP;
 import powerups.ExtraHP;
+import powerups.ExtraSPD;
+import powerups.ExtraWP;
 import screens.MainGame;
 
 public class StageLoader {
@@ -83,6 +86,7 @@ public class StageLoader {
             else if(t.clase.equals("enemies.FireDevil")){
                 game.enemies.add(new FireDevil(t.posx,t.posy,t.appearance));
             }
+
             i++;
         }
 
@@ -111,6 +115,15 @@ public class StageLoader {
             t.appearance = powerups.get(i).get("appearance").asFloat();
             if(t.clase.equals("powerups.ExtraHP")){
                 game.powerups.add(new ExtraHP(t.posx,t.posy,t.appearance));
+            }
+            if(t.clase.equals("powerups.ExtraAP")){
+                game.powerups.add(new ExtraAP(t.posx,t.posy,t.appearance));
+            }
+            if(t.clase.equals("powerups.ExtraSPD")){
+                game.powerups.add(new ExtraSPD(t.posx,t.posy,t.appearance));
+            }
+            if(t.clase.equals("powerups.ExtraWP")){
+                game.powerups.add(new ExtraWP(t.posx,t.posy,t.appearance));
             }
             i++;
         }

@@ -1,6 +1,5 @@
 package movers;
 
-import com.badlogic.gdx.Gdx;
 import com.breco.claudy.Principal;
 
 import enemies.Enemy;
@@ -113,7 +112,7 @@ public class SpiralMover extends Mover {
 
                 }
                 else if(dirX.equals("L")){
-                    Gdx.app.log("phase","4");
+
                     owner.setX(center_x + (float) (r*Math.cos(angle)));
                     owner.setY(center_y + (float) (r*Math.sin(angle)));
                     angle-= 0.04;

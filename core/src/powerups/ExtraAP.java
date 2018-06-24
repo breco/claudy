@@ -8,17 +8,16 @@ import allies.Cloud;
 import screens.MainGame;
 import utils.Animator;
 
-public class ExtraHP extends Powerup{
+public class ExtraAP extends Powerup {
 
-
-    int HEAL_HP = 5;
-    public ExtraHP(int x, int y,float appearance) {
+    int EXTRA_AP = 5;
+    public ExtraAP(int x, int y,float appearance) {
         super(x, y,appearance);
         setSize(32,32);
         int[] size = {16,16};
         dirX = "R";
         dirY = "U";
-        animator = new Animator(new Texture(Gdx.files.internal("powerups/HP_UP.png")),1,2,2,0.4f,size);
+        animator = new Animator(new Texture(Gdx.files.internal("powerups/AP_UP.png")),1,2,2,0.4f,size);
     }
 
     @Override
@@ -29,7 +28,7 @@ public class ExtraHP extends Powerup{
 
     @Override
     public void effect(Cloud cloud) {
-        cloud.healHP(HEAL_HP);
+        cloud.setAP(EXTRA_AP);
         MainGame.powerups.remove(this);
     }
 

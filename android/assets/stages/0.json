@@ -81,7 +81,8 @@
     {"clase" : "allies.Flower", "posx" : 530, "posy" : 0}
   ],
   "powerups": [
-    {"clase" : "powerups.ExtraHP", "posx" : 250, "posy" : 0, "appearance" : 6}
+    {"clase" : "powerups.ExtraWP", "posx" : 250, "posy" : 0, "appearance" : 6}
+
   ],
   "cloud" : {
     "name" : "Cloud",
