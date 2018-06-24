@@ -30,6 +30,7 @@ public abstract class Enemy extends Sprite {
     protected Mover mover;
     float SPEED_X;
     float SPEED_Y;
+    String patron;
     public Enemy(int x, int y, int HP, int ATK, float appearance,int points){
         setPosition(x, y);
 
@@ -44,7 +45,15 @@ public abstract class Enemy extends Sprite {
     public abstract void shoot();
     public abstract void update();
     public abstract void move();
+
     public abstract void draw(SpriteBatch batch);
+    public void attack(){
+        if(!MainGame.cloud.inmunity() && MainGame.cloud.getBoundingRectangle().overlaps(getBoundingRectangle())){
+            MainGame.cloud.setDamage(getATK());
+            setDamage(CURRENT_HP);
+            return;
+        }
+    }
     public void setDamage(int dmg) {
 
         CURRENT_HP -= dmg;

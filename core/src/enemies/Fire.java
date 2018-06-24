@@ -27,7 +27,6 @@ public class Fire extends Enemy {
     //MOVE variables
     int final_x;
     int final_y;
-    String patron;
 
     public Fire(int x, int y,String patron,float appearance){
         super(x,y,1,1,appearance,100);
@@ -58,11 +57,7 @@ public class Fire extends Enemy {
     }
 
     public void attack(){
-        if(!MainGame.cloud.inmunity() && MainGame.cloud.getBoundingRectangle().overlaps(getBoundingRectangle())){
-            MainGame.cloud.setDamage(getATK());
-            setDamage(CURRENT_HP);
-            return;
-        }
+        super.attack();
         for(Ally ally : MainGame.allies.getAllies()){
             if(ally.getBoundingRectangle().overlaps(getBoundingRectangle())){
                 ally.setDamage(getATK());

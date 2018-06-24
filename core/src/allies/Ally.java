@@ -43,6 +43,7 @@ public abstract class Ally extends Sprite {
     public abstract void move();
     public abstract void getWater(int WP);
     public abstract void draw(SpriteBatch batch);
+    public abstract void dispose();
     public void setDamage(int dmg) {
 
         CURRENT_HP -= dmg;

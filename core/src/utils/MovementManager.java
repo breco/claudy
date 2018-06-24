@@ -3,9 +3,11 @@ package utils;
 import enemies.Enemy;
 import movers.CircularMover;
 import movers.GravityMover;
+import movers.HorizontalMover;
 import movers.Mover;
 import movers.NormalMover;
 import movers.SpiralMover;
+import movers.StaticMover;
 import movers.StraightMover;
 import movers.ZigzagMover;
 
@@ -28,6 +30,12 @@ public class MovementManager {
         }
         else if(patron.contains("spiral")){
             return new SpiralMover(owner,patron,final_x,final_y);
+        }
+        else if(patron.contains("static")){
+            return new StaticMover(owner,patron,final_x,final_y);
+        }
+        else if(patron.contains("horizontal")){
+            return new HorizontalMover(owner,patron,final_x,final_y);
         }
         return null;
     }

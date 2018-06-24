@@ -4,13 +4,11 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
-import com.breco.claudy.Principal;
-
-import java.util.Random;
 
 import bullets.Bullet;
 import screens.MainGame;
 import utils.Animator;
+import utils.MovementManager;
 
 /**
  * Created by victor on 4/14/18.
@@ -25,23 +23,25 @@ public class DarkCloud extends Enemy{
 
     //MOVE variables
     String dirX = "R";
-    int SPEED_X = 2;
-    String moveType;
+    int SPEED_X = 4;
+
 
 
     //BLOW variables
     Rectangle blowRect;
-    public DarkCloud(int x, int y,String moveType, float appearance) {
+    public DarkCloud(int x, int y,String patron, float appearance) {
         super(x, y, 3, 1, appearance, 200);
-        this.moveType = moveType;
+        this.patron = patron;
         int[] size2 = {8,8};
         int[] size = {16,16};
         setSize(32,32);
         animator = new Animator(new Texture(Gdx.files.internal("enemies/Dark Cloud.png")),1,2,2,0.5f,size);
         dyingAnimator = new Animator(new Texture(Gdx.files.internal("enemies/EnemyDefeat3.png")),1,2,2,0.2f,size2);
         dyingDuration = 0.3f;
-        Random random = new Random();
-        SPEED_X = random.nextInt(4) + 1; //[1,3]
+
+        mover = MovementManager.getMover(this,patron,x,y);
+        mover.setSpeed(SPEED_X,0);
+        //TEST
         blowRect = new Rectangle(getX()+getWidth(),getY(),96,128);
     }
 
@@ -54,6 +54,7 @@ public class DarkCloud extends Enemy{
     @Override
     public void update() {
         move();
+        attack();
         shoot();
         blow();
     }
@@ -69,26 +70,13 @@ public class DarkCloud extends Enemy{
 
     @Override
     public void move() {
-        if(moveType.equals("static")) return;
-        if(moveType.equals("windy")) return;
-        if(dirX.equals("R")){
-            setX(getX()+SPEED_X);
-            if(getX() + getWidth() > Principal.WIDTH){
-                dirX = "L";
-                setX( Principal.WIDTH - getWidth());
-            }
-        }
-        else if(dirX.equals("L")){
-            setX(getX()-SPEED_X);
-            if(getX() < 0){
-                setX(0);
-                dirX = "R";
-            }
-        }
+        mover.move();
+        return;
+
     }
 
     public void blow(){
-        if(!moveType.equals("windy")) return;
+        if(!patron.equals("windy")) return;
         for(Bullet bullet : MainGame.bullets.getBullets()){
             if(bullet.type.equals("ally")){
                 if(blowRect.overlaps(bullet.getBoundingRectangle())){

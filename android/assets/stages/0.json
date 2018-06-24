@@ -3,6 +3,16 @@
     //{"clase" : "enemies.FireEater", "posx" : 200, "posy" : 300, "moveType": "static","appearance": 0},
     //{"clase" : "enemies.FireEater", "posx" : 300, "posy" : 300, "moveType": "static","appearance": 0},
     //{"clase" : "enemies.FireNormal", "posx" :500, "posy" : 50, "moveType": "static","appearance": 0},
+
+    {"clase" : "enemies.DarkCloud", "posx" :  100, "posy" : 540, "moveType" : "horizontal-R","appearance": 0},
+    {"clase" : "enemies.DarkCloud", "posx" :  200, "posy" : 510, "moveType" : "horizontal-R","appearance": 0},
+    {"clase" : "enemies.DarkCloud", "posx" :  300, "posy" : 480, "moveType" : "horizontal-R","appearance": 0},
+    {"clase" : "enemies.DarkCloud", "posx" :  400, "posy" : 450, "moveType" : "horizontal-R","appearance": 0},
+    {"clase" : "enemies.DarkCloud", "posx" :  400, "posy" : 540, "moveType" : "horizontal-L","appearance": 0},
+    {"clase" : "enemies.DarkCloud", "posx" :  300, "posy" : 510, "moveType" : "horizontal-L","appearance": 0},
+    {"clase" : "enemies.DarkCloud", "posx" :  200, "posy" : 480, "moveType" : "horizontal-L","appearance": 0},
+    {"clase" : "enemies.DarkCloud", "posx" :  100, "posy" : 450, "moveType" : "horizontal-L","appearance": 0},
+
     {"clase" : "enemies.FireNormal", "posx" :  50, "posy" : 350, "moveType" : "spiral-R-D-G","appearance": 0.2},
     {"clase" : "enemies.FireNormal", "posx" : 100, "posy" : 350, "moveType" : "spiral-R-D-G","appearance": 0.4},
     {"clase" : "enemies.FireNormal", "posx" : 150, "posy" : 350, "moveType" : "spiral-R-D-G","appearance": 0.6},
@@ -39,6 +49,18 @@
     {"clase" : "enemies.FireNormal", "posx" : 500, "posy" : 225, "moveType" : "spiral-R-D-G","appearance": 8},
     {"clase" : "enemies.FireNormal", "posx" : 550, "posy" : 225, "moveType" : "spiral-R-D-G","appearance": 8.2},
 
+    {"clase" : "enemies.DarkCloud", "posx" :  50, "posy" : 150, "moveType" : "straight-L","appearance": 10.2},
+
+    {"clase" : "enemies.DarkCloud", "posx" : 150, "posy" : 150, "moveType" : "straight-L","appearance": 10.6},
+
+    {"clase" : "enemies.DarkCloud", "posx" : 250, "posy" : 150, "moveType" : "straight-L","appearance": 11},
+
+    {"clase" : "enemies.DarkCloud", "posx" : 350, "posy" : 150, "moveType" : "straight-L","appearance": 11.4},
+
+    {"clase" : "enemies.DarkCloud", "posx" : 450, "posy" : 150, "moveType" : "straight-L","appearance": 11.8},
+
+    {"clase" : "enemies.DarkCloud", "posx" : 550, "posy" : 150, "moveType" : "straight-L","appearance": 12.2},
+
     {"clase" : "enemies.FireNormal", "posx" :  50, "posy" : 150, "moveType" : "straight-R","appearance": 12.2},
     {"clase" : "enemies.FireNormal", "posx" : 100, "posy" : 150, "moveType" : "straight-R","appearance": 12.4},
     {"clase" : "enemies.FireNormal", "posx" : 150, "posy" : 150, "moveType" : "straight-R","appearance": 12.6},
@@ -62,12 +84,12 @@
     {"clase" : "powerups.ExtraHP", "posx" : 250, "posy" : 0, "appearance" : 6}
   ],
   "cloud" : {
-    "name" : "CloudFlower",
+    "name" : "Cloud",
     "width" : 16,
-    "height" : 32
+    "height" : 16
   },
   "background" : "bg4",
-  "ost": "boss"
+  "ost": "bgm1"
 }
 
 

@@ -65,13 +65,20 @@ public class Cirrus extends Ally{
         }
         animator.draw(this,batch);
     }
+
+    @Override
+    public void dispose() {
+        Gdx.app.log("DISPOSING","CIRRUS");
+        rain.stop();
+        rain.dispose();
+    }
+
     public void attack(){
         rain.loop();
-
         timer.setChronometer(2);
         timer.start();
-        for(int i = 1; i< 14;i++){
-            if(i == 1){
+        for(int i = 0; i< 14;i++){
+            if(i == 0){
                 MainGame.bullets.add(new HeavyWaterdrop(animatorBottom, ((int) getX()-8),i*48));
             }
             else if(i == 13){

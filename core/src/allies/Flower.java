@@ -81,4 +81,9 @@ public class Flower extends Ally {
         }
         animator.draw(this,batch);
     }
+
+    @Override
+    public void dispose() {
+
+    }
 }

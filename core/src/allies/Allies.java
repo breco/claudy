@@ -77,4 +77,9 @@ public class Allies {
         }
         return bonus;
     }
+    public void dispose(){
+        for(Ally ally : allies){
+            ally.dispose();
+        }
+    }
 }

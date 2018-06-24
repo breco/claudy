@@ -16,7 +16,7 @@ public class CactusFlower extends Ally {
 
     //SHOOT VARIABLES
     int shootTimer = 0;
-    int shootInterval = 200;
+    int shootInterval = 100;
     Animator bulletAnimator;
     int[] bulletSize = {8,8};
 
@@ -71,6 +71,11 @@ public class CactusFlower extends Ally {
         }
         animator.draw(this,batch);
     }
-    
+
+    @Override
+    public void dispose() {
+
+    }
+
 
 }

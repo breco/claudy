@@ -28,6 +28,7 @@ public class StageCleared {
     int flowerBonus;
     //TEST
     int timeLimit;
+    Sound win;
     public StageCleared(Enemies enemies, int timeLimit) {
         this.timeLimit = timeLimit;
         this.enemies = enemies;
@@ -59,7 +60,7 @@ public class StageCleared {
             start();
             cleared = true;
             flowerBonus = MainGame.allies.getFlowerbonus();
-            Sound win = Gdx.audio.newSound(Gdx.files.internal("sound effects/win-4.mp3"));
+            win = Gdx.audio.newSound(Gdx.files.internal("sound effects/win-4.mp3"));
             win.play();
             Preferences prefs = Gdx.app.getPreferences("Preferences");
             prefs.putInteger("stage",prefs.getInteger("stage")+1);
@@ -80,5 +81,9 @@ public class StageCleared {
     }
     public boolean isCleared(){
         return cleared;
+    }
+
+    public void dispose() {
+        if(win != null) win.dispose();
     }
 }

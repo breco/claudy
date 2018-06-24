@@ -19,6 +19,7 @@ public class GameOver {
     BitmapFont font;
     TimeManager time;
     private boolean enterPressed = false;
+    Sound win;
     public GameOver() {
         font = new BitmapFont(Gdx.files.internal("fonts/font.fnt"));
         font.setColor(Color.WHITE);
@@ -31,7 +32,7 @@ public class GameOver {
 
     }
     public void start(){
-        Sound win = Gdx.audio.newSound(Gdx.files.internal("sound effects/lose.ogg"));
+        win = Gdx.audio.newSound(Gdx.files.internal("sound effects/lose.ogg"));
         win.play();
         time.setChronometer(5);
         time.start();
@@ -48,5 +49,9 @@ public class GameOver {
     }
     public boolean canRestart(){
         return enterPressed || time.ring();
+    }
+
+    public void dispose() {
+        if(win != null) win.dispose();
     }
 }

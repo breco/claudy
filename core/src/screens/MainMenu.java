@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -27,6 +28,7 @@ public class MainMenu implements Screen {
     BitmapFont font;
     Texture bg;
     Sprite logo;
+    public Music music;
 
     public MainMenu(Principal game){
         this.game = game;
@@ -42,6 +44,8 @@ public class MainMenu implements Screen {
         font.getData().setScale(0.5f, 0.5f);
         highscore = new HighScore();
 
+        music = Gdx.audio.newMusic(Gdx.files.internal("music/intro.ogg"));
+        music.play();
 
     }
     public void input(){
@@ -126,5 +130,6 @@ public class MainMenu implements Screen {
     public void dispose() {
         font.dispose();
         bg.dispose();
+        music.dispose();
     }
 }

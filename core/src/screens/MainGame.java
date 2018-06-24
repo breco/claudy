@@ -105,18 +105,21 @@ public class MainGame implements Screen {
             music.stop();
             gameOver.input();
             if(gameOver.canRestart()){
-                game.setScreen(new MainMenu(game));
                 dispose();
+                game.setScreen(new MainMenu(game));
+
             }
             return;
         }
         stageCleared.update();
         if(stageCleared.isCleared()){
             music.stop();
+            allies.dispose();
             stageCleared.input();
             if(stageCleared.canNextStage()){
-                game.setScreen(new MainGame(game));
                 dispose();
+                game.setScreen(new MainGame(game));
+
 
             }
             return;
@@ -209,7 +212,10 @@ public class MainGame implements Screen {
 
     @Override
     public void dispose() {
+        stageCleared.dispose();
+        gameOver.dispose();
         music.stop();
         music.dispose();
+        allies.dispose();
     }
 }
