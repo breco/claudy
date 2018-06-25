@@ -1,6 +1,5 @@
 package movers;
 
-import com.badlogic.gdx.Gdx;
 import com.breco.claudy.Principal;
 
 import enemies.Enemy;
@@ -22,9 +21,6 @@ public class HorizontalMover extends Mover {
 
     @Override
     public void move() {
-        Gdx.app.log("moving","from normal mover");
-        Gdx.app.log("SPEED_X",SPEED_X+"");
-        Gdx.app.log("SPEED_Y",SPEED_Y+"");
 
         if(dirX.equals("R")){
             owner.setX(owner.getX()+SPEED_X);

@@ -28,6 +28,9 @@ public class SpiralMover extends Mover {
             start_x = Principal.WIDTH;
             dirX = "L";
         }
+        if(patron.contains("U")){
+            start_y = Principal.HEIGHT/2;
+        }
         if(patron.contains("M")){
             start_y = Principal.HEIGHT/4;
 

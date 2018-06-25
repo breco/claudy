@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 
+import bullets.AutoBullet;
 import bullets.Bullet;
 import screens.MainGame;
 import utils.Animator;
@@ -17,12 +18,15 @@ import utils.MovementManager;
 public class DarkCloud extends Enemy{
 
     //SHOOT variables
+    int shootTimer = 0;
+    int shootInterval = 200;
+    int[] bulletSize = {8,8};
+    Animator bulletAnimator;
 
 
     //VISUAL variables
 
     //MOVE variables
-    String dirX = "R";
     int SPEED_X = 4;
 
 
@@ -48,7 +52,12 @@ public class DarkCloud extends Enemy{
 
     @Override
     public void shoot() {
-
+        shootTimer++;
+        if(shootTimer == shootInterval){
+            shootTimer = 0;
+            bulletAnimator = new Animator(new Texture(Gdx.files.internal("bullets/Smoke.png")),1,2,2,0.5f, bulletSize);
+            MainGame.bullets.add(new AutoBullet(bulletAnimator,((int)(getX()+getWidth()/2-8)), ((int) (getY()-16))));
+        }
     }
 
     @Override
