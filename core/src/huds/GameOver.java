@@ -2,6 +2,7 @@ package huds;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
@@ -36,6 +37,9 @@ public class GameOver {
         win.play();
         time.setChronometer(5);
         time.start();
+        Preferences prefs = Gdx.app.getPreferences("Preferences");
+        prefs.putInteger("stage",1);
+        prefs.flush();
     }
     public void update(){
 

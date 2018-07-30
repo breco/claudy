@@ -1,25 +1,148 @@
 {
-	"enemies" : [
-		{"clase" : "enemies.FireDevil", "posx" : 200, "posy" : 100, "moveType": "","appearance": 0}
-		//{"clase" : "enemies.FireEater", "posx" : 200, "posy" : 300, "moveType": "static","appearance": 0}
+  "enemies" : [
+    //{"clase" : "enemies.FireEater", "posx" : 200, "posy" : 300, "moveType": "static","appearance": 0},
+    //{"clase" : "enemies.FireEater", "posx" : 300, "posy" : 300, "moveType": "static","appearance": 0},
+    //{"clase" : "enemies.FireNormal", "posx" :500, "posy" : 50, "moveType": "static","appearance": 0},
 
 
-	],
-	"allies" : [
-		{"clase" : "allies.Flower", "posx" : 1000, "posy" : 0}
-		//{"clase" : "allies.Flower", "posx" : 200, "posy" : 0},
-		//{"clase" : "allies.Flower", "posx" : 300, "posy" : 0}
-	],
-	"powerups": [
-		{"clase" : "powerups.ExtraHP", "posx" : 250, "posy" : 0, "appearance" : 20}
-	],
-	"cloud" : {
-		"name" : "CloudFlower",
-		"width" : 16,
-		"height" : 32
-	},
-	"background" : "bgBoss",
-	"ost": "boss"
+    {"clase" : "enemies.DarkCloud", "posx" :  100, "posy" : 540, "moveType" : "horizontal-R","appearance": 0},
+    {"clase" : "enemies.DarkCloud", "posx" :  200, "posy" : 510, "moveType" : "horizontal-R","appearance": 0},
+    {"clase" : "enemies.DarkCloud", "posx" :  300, "posy" : 480, "moveType" : "horizontal-R","appearance": 0},
+    {"clase" : "enemies.DarkCloud", "posx" :  400, "posy" : 450, "moveType" : "horizontal-R","appearance": 0},
+    {"clase" : "enemies.DarkCloud", "posx" :  400, "posy" : 540, "moveType" : "horizontal-L","appearance": 0},
+    {"clase" : "enemies.DarkCloud", "posx" :  300, "posy" : 510, "moveType" : "horizontal-L","appearance": 0},
+    {"clase" : "enemies.DarkCloud", "posx" :  200, "posy" : 480, "moveType" : "horizontal-L","appearance": 0},
+    {"clase" : "enemies.DarkCloud", "posx" :  100, "posy" : 450, "moveType" : "horizontal-L","appearance": 0},
+
+    {"clase" : "enemies.FireNormal", "posx" :  50, "posy" : 350, "moveType" : "spiral-R-D-G","appearance": 0.2},
+    {"clase" : "enemies.FireNormal", "posx" : 100, "posy" : 350, "moveType" : "spiral-R-D-G","appearance": 0.4},
+    {"clase" : "enemies.FireNormal", "posx" : 150, "posy" : 350, "moveType" : "spiral-R-D-G","appearance": 0.6},
+    {"clase" : "enemies.FireNormal", "posx" : 200, "posy" : 350, "moveType" : "spiral-R-D-G","appearance": 0.8},
+    {"clase" : "enemies.FireNormal", "posx" : 250, "posy" : 350, "moveType" : "spiral-R-D-G","appearance": 1},
+    {"clase" : "enemies.FireNormal", "posx" : 300, "posy" : 350, "moveType" : "spiral-R-D-G","appearance": 1.2},
+    {"clase" : "enemies.FireNormal", "posx" : 350, "posy" : 350, "moveType" : "spiral-R-D-G","appearance": 1.4},
+    {"clase" : "enemies.FireNormal", "posx" : 400, "posy" : 350, "moveType" : "spiral-R-D-G","appearance": 1.6},
+    {"clase" : "enemies.FireNormal", "posx" : 450, "posy" : 350, "moveType" : "spiral-R-D-G","appearance": 1.8},
+    {"clase" : "enemies.FireNormal", "posx" : 500, "posy" : 350, "moveType" : "spiral-R-D-G","appearance": 2},
+    {"clase" : "enemies.FireNormal", "posx" : 550, "posy" : 350, "moveType" : "spiral-R-D-G","appearance": 2.2},
+
+    {"clase" : "enemies.FireNormal", "posx" : 550, "posy" : 400, "moveType" : "spiral-L-M-G","appearance": 3.2},
+    {"clase" : "enemies.FireNormal", "posx" : 500, "posy" : 400, "moveType" : "spiral-L-M-G","appearance": 3.4},
+    {"clase" : "enemies.FireNormal", "posx" : 450, "posy" : 400, "moveType" : "spiral-L-M-G","appearance": 3.6},
+    {"clase" : "enemies.FireNormal", "posx" : 400, "posy" : 400, "moveType" : "spiral-L-M-G","appearance": 3.8},
+    {"clase" : "enemies.FireNormal", "posx" : 350, "posy" : 400, "moveType" : "spiral-L-M-G","appearance": 4},
+    {"clase" : "enemies.FireNormal", "posx" : 300, "posy" : 400, "moveType" : "spiral-L-M-G","appearance": 4.2},
+    {"clase" : "enemies.FireNormal", "posx" : 250, "posy" : 400, "moveType" : "spiral-L-M-G","appearance": 4.4},
+    {"clase" : "enemies.FireNormal", "posx" : 200, "posy" : 400, "moveType" : "spiral-L-M-G","appearance": 4.6},
+    {"clase" : "enemies.FireNormal", "posx" : 150, "posy" : 400, "moveType" : "spiral-L-M-G","appearance": 4.8},
+    {"clase" : "enemies.FireNormal", "posx" : 100, "posy" : 400, "moveType" : "spiral-L-M-G","appearance": 5},
+    {"clase" : "enemies.FireNormal", "posx" :  50, "posy" : 400, "moveType" : "spiral-L-M-G","appearance": 5.2},
+
+    {"clase" : "enemies.FireNormal", "posx" :  50, "posy" : 225, "moveType" : "spiral-R-D-G","appearance": 6.2},
+    {"clase" : "enemies.FireNormal", "posx" : 100, "posy" : 225, "moveType" : "spiral-R-D-G","appearance": 6.4},
+    {"clase" : "enemies.FireNormal", "posx" : 150, "posy" : 225, "moveType" : "spiral-R-D-G","appearance": 6.6},
+    {"clase" : "enemies.FireNormal", "posx" : 200, "posy" : 225, "moveType" : "spiral-R-D-G","appearance": 6.8},
+    {"clase" : "enemies.FireNormal", "posx" : 250, "posy" : 225, "moveType" : "spiral-R-D-G","appearance": 7},
+    {"clase" : "enemies.FireNormal", "posx" : 300, "posy" : 225, "moveType" : "spiral-R-D-G","appearance": 7.2},
+    {"clase" : "enemies.FireNormal", "posx" : 350, "posy" : 225, "moveType" : "spiral-R-D-G","appearance": 7.4},
+    {"clase" : "enemies.FireNormal", "posx" : 400, "posy" : 225, "moveType" : "spiral-R-D-G","appearance": 7.6},
+    {"clase" : "enemies.FireNormal", "posx" : 450, "posy" : 225, "moveType" : "spiral-R-D-G","appearance": 7.8},
+    {"clase" : "enemies.FireNormal", "posx" : 500, "posy" : 225, "moveType" : "spiral-R-D-G","appearance": 8},
+    {"clase" : "enemies.FireNormal", "posx" : 550, "posy" : 225, "moveType" : "spiral-R-D-G","appearance": 8.2},
+
+    {"clase" : "enemies.DarkCloud", "posx" :  50, "posy" : 150, "moveType" : "straight-L","appearance": 10.2},
+    {"clase" : "enemies.DarkCloud", "posx" : 150, "posy" : 150, "moveType" : "straight-L","appearance": 10.6},
+    {"clase" : "enemies.DarkCloud", "posx" : 250, "posy" : 150, "moveType" : "straight-L","appearance": 11},
+    {"clase" : "enemies.DarkCloud", "posx" : 350, "posy" : 150, "moveType" : "straight-L","appearance": 11.4},
+    {"clase" : "enemies.DarkCloud", "posx" : 450, "posy" : 150, "moveType" : "straight-L","appearance": 11.8},
+    {"clase" : "enemies.DarkCloud", "posx" : 550, "posy" : 150, "moveType" : "straight-L","appearance": 12.2},
+
+    {"clase" : "enemies.FireNormal", "posx" :  50, "posy" : 150, "moveType" : "straight-R","appearance": 12.2},
+    {"clase" : "enemies.FireNormal", "posx" : 100, "posy" : 150, "moveType" : "straight-R","appearance": 12.4},
+    {"clase" : "enemies.FireNormal", "posx" : 150, "posy" : 150, "moveType" : "straight-R","appearance": 12.6},
+    {"clase" : "enemies.FireNormal", "posx" : 200, "posy" : 150, "moveType" : "straight-R","appearance": 12.8},
+    {"clase" : "enemies.FireNormal", "posx" : 250, "posy" : 150, "moveType" : "straight-R","appearance": 13},
+    {"clase" : "enemies.FireNormal", "posx" : 300, "posy" : 150, "moveType" : "straight-R","appearance": 13.2},
+    {"clase" : "enemies.FireNormal", "posx" : 350, "posy" : 150, "moveType" : "straight-R","appearance": 13.4},
+    {"clase" : "enemies.FireNormal", "posx" : 400, "posy" : 150, "moveType" : "straight-R","appearance": 13.6},
+    {"clase" : "enemies.FireNormal", "posx" : 450, "posy" : 150, "moveType" : "straight-R","appearance": 13.8},
+    {"clase" : "enemies.FireNormal", "posx" : 500, "posy" : 150, "moveType" : "straight-R","appearance": 14},
+    {"clase" : "enemies.FireNormal", "posx" : 550, "posy" : 150, "moveType" : "straight-R","appearance": 14.2},
+
+    {"clase" : "enemies.FireNormal", "posx" :  50, "posy" : 450, "moveType" : "spiral-R-M-G","appearance": 18.2},
+    {"clase" : "enemies.FireNormal", "posx" : 100, "posy" : 450, "moveType" : "spiral-R-M-G","appearance": 18.4},
+    {"clase" : "enemies.FireNormal", "posx" : 150, "posy" : 450, "moveType" : "spiral-R-M-G","appearance": 18.6},
+    {"clase" : "enemies.FireNormal", "posx" : 200, "posy" : 450, "moveType" : "spiral-R-M-G","appearance": 18.8},
+    {"clase" : "enemies.FireNormal", "posx" : 250, "posy" : 450, "moveType" : "spiral-R-M-G","appearance": 19},
+    {"clase" : "enemies.FireNormal", "posx" : 300, "posy" : 450, "moveType" : "spiral-R-M-G","appearance": 19.2},
+    {"clase" : "enemies.FireNormal", "posx" : 350, "posy" : 450, "moveType" : "spiral-R-M-G","appearance": 19.4},
+    {"clase" : "enemies.FireNormal", "posx" : 400, "posy" : 450, "moveType" : "spiral-R-M-G","appearance": 19.6},
+    {"clase" : "enemies.FireNormal", "posx" : 450, "posy" : 450, "moveType" : "spiral-R-M-G","appearance": 19.8},
+    {"clase" : "enemies.FireNormal", "posx" : 500, "posy" : 450, "moveType" : "spiral-R-M-G","appearance": 19},
+    {"clase" : "enemies.FireNormal", "posx" : 550, "posy" : 450, "moveType" : "spiral-R-M-G","appearance": 20.2},
+
+    {"clase" : "enemies.FireNormal", "posx" : 550, "posy" : 400, "moveType" : "spiral-L-M-G","appearance": 18.2},
+    {"clase" : "enemies.FireNormal", "posx" : 500, "posy" : 400, "moveType" : "spiral-L-M-G","appearance": 18.4},
+    {"clase" : "enemies.FireNormal", "posx" : 450, "posy" : 400, "moveType" : "spiral-L-M-G","appearance": 18.6},
+    {"clase" : "enemies.FireNormal", "posx" : 400, "posy" : 400, "moveType" : "spiral-L-M-G","appearance": 18.8},
+    {"clase" : "enemies.FireNormal", "posx" : 350, "posy" : 400, "moveType" : "spiral-L-M-G","appearance": 19},
+    {"clase" : "enemies.FireNormal", "posx" : 300, "posy" : 400, "moveType" : "spiral-L-M-G","appearance": 19.2},
+    {"clase" : "enemies.FireNormal", "posx" : 250, "posy" : 400, "moveType" : "spiral-L-M-G","appearance": 19.4},
+    {"clase" : "enemies.FireNormal", "posx" : 200, "posy" : 400, "moveType" : "spiral-L-M-G","appearance": 19.6},
+    {"clase" : "enemies.FireNormal", "posx" : 150, "posy" : 400, "moveType" : "spiral-L-M-G","appearance": 19.8},
+    {"clase" : "enemies.FireNormal", "posx" : 100, "posy" : 400, "moveType" : "spiral-L-M-G","appearance": 20},
+    {"clase" : "enemies.FireNormal", "posx" :  50, "posy" : 400, "moveType" : "spiral-L-M-G","appearance": 20.2},
+
+    {"clase" : "enemies.DarkCloud", "posx" :  50, "posy" : 500, "moveType" : "straight-L","appearance": 22.2},
+    {"clase" : "enemies.DarkCloud", "posx" : 150, "posy" : 500, "moveType" : "straight-L","appearance": 22.4},
+    {"clase" : "enemies.DarkCloud", "posx" : 250, "posy" : 500, "moveType" : "straight-L","appearance": 22.6},
+    {"clase" : "enemies.DarkCloud", "posx" : 350, "posy" : 500, "moveType" : "straight-L","appearance": 22.8},
+    {"clase" : "enemies.DarkCloud", "posx" : 450, "posy" : 500, "moveType" : "straight-L","appearance": 23},
+    {"clase" : "enemies.DarkCloud", "posx" : 550, "posy" : 500, "moveType" : "straight-L","appearance": 23.2},
+
+    {"clase" : "enemies.FireNormal", "posx" :  50, "posy" : 150, "moveType" : "straight-R","appearance": 26.2},
+    {"clase" : "enemies.FireNormal", "posx" : 100, "posy" : 150, "moveType" : "straight-R","appearance": 26.4},
+    {"clase" : "enemies.FireNormal", "posx" : 150, "posy" : 150, "moveType" : "straight-R","appearance": 26.6},
+    {"clase" : "enemies.FireNormal", "posx" : 200, "posy" : 150, "moveType" : "straight-R","appearance": 26.8},
+    {"clase" : "enemies.FireNormal", "posx" : 250, "posy" : 150, "moveType" : "straight-R","appearance": 27},
+    {"clase" : "enemies.FireNormal", "posx" : 300, "posy" : 150, "moveType" : "straight-R","appearance": 27.2},
+    {"clase" : "enemies.FireNormal", "posx" : 350, "posy" : 150, "moveType" : "straight-R","appearance": 27.4},
+    {"clase" : "enemies.FireNormal", "posx" : 400, "posy" : 150, "moveType" : "straight-R","appearance": 27.6},
+    {"clase" : "enemies.FireNormal", "posx" : 450, "posy" : 150, "moveType" : "straight-R","appearance": 27.8},
+    {"clase" : "enemies.FireNormal", "posx" : 500, "posy" : 150, "moveType" : "straight-R","appearance": 28},
+    {"clase" : "enemies.FireNormal", "posx" : 550, "posy" : 150, "moveType" : "straight-R","appearance": 28.2},
+
+    {"clase" : "enemies.FireNormal", "posx" :  50, "posy" : 200, "moveType" : "straight-R","appearance": 26.2},
+    {"clase" : "enemies.FireNormal", "posx" : 100, "posy" : 200, "moveType" : "straight-R","appearance": 26.4},
+    {"clase" : "enemies.FireNormal", "posx" : 150, "posy" : 200, "moveType" : "straight-R","appearance": 26.6},
+    {"clase" : "enemies.FireNormal", "posx" : 200, "posy" : 200, "moveType" : "straight-R","appearance": 26.8},
+    {"clase" : "enemies.FireNormal", "posx" : 250, "posy" : 200, "moveType" : "straight-R","appearance": 27},
+    {"clase" : "enemies.FireNormal", "posx" : 300, "posy" : 200, "moveType" : "straight-R","appearance": 27.2},
+    {"clase" : "enemies.FireNormal", "posx" : 350, "posy" : 200, "moveType" : "straight-R","appearance": 27.4},
+    {"clase" : "enemies.FireNormal", "posx" : 400, "posy" : 200, "moveType" : "straight-R","appearance": 27.6},
+    {"clase" : "enemies.FireNormal", "posx" : 450, "posy" : 200, "moveType" : "straight-R","appearance": 27.8},
+    {"clase" : "enemies.FireNormal", "posx" : 500, "posy" : 200, "moveType" : "straight-R","appearance": 28},
+    {"clase" : "enemies.FireNormal", "posx" : 550, "posy" : 200, "moveType" : "straight-R","appearance": 28.2}
+
+  ],
+  "allies" : [
+    {"clase" : "allies.Flower", "posx" : 80, "posy" : 0},
+    {"clase" : "allies.Flower", "posx" : 230, "posy" : 0},
+    {"clase" : "allies.Flower", "posx" : 380, "posy" : 0},
+    {"clase" : "allies.Flower", "posx" : 530, "posy" : 0}
+  ],
+  "powerups": [
+    {"clase" : "powerups.ExtraWP", "posx" : 250, "posy" : 0, "appearance" : 6},
+    {"clase" : "powerups.ExtraHP", "posx" : 500, "posy" : 0, "appearance" : 25}
+
+  ],
+  "cloud" : {
+    "name" : "Cloud",
+    "width" : 16,
+    "height" : 16
+  },
+  "background" : "bg4",
+  "ost": "bgm1"
 }
 
 

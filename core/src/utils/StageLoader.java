@@ -86,7 +86,6 @@ public class StageLoader {
             else if(t.clase.equals("enemies.FireDevil")){
                 game.enemies.add(new FireDevil(t.posx,t.posy,t.appearance));
             }
-
             i++;
         }
 

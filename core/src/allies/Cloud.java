@@ -76,6 +76,7 @@ public class Cloud extends Sprite {
         Preferences prefs = Gdx.app.getPreferences("Preferences");
         LIFES = 1;
         HP = prefs.getInteger("HP");
+        AP = prefs.getInteger("AP");
     }
     public void update(){
         move();

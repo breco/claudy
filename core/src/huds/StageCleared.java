@@ -66,6 +66,7 @@ public class StageCleared {
             prefs.putInteger("stage",prefs.getInteger("stage")+1);
             prefs.putInteger("highscore",MainGame.highscore.getScore()+flowerBonus);
             prefs.putInteger("HP",MainGame.cloud.getHP());
+            prefs.putInteger("AP",MainGame.cloud.getAP());
             prefs.flush();
         }
 

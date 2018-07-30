@@ -66,7 +66,11 @@ public class MainMenu implements Screen {
 
         game.batch.draw(bg,0,-50);
         logo.draw(game.batch);
-        font.draw(game.batch, "PUSH START BUTTON", Principal.WIDTH/3.5f, Principal.HEIGHT/1.8f);
+        font.draw(game.batch, "PRESS START BUTTON", Principal.WIDTH/3.5f, Principal.HEIGHT/1.8f);
+
+        font.draw(game.batch, "MOVE             ARROW KEYS", Principal.WIDTH/5.5f, Principal.HEIGHT/3f);
+        font.draw(game.batch, "NORMAL SHOT           SPACE", Principal.WIDTH/5.5f, Principal.HEIGHT/3.3f);
+        font.draw(game.batch, "SPECIAL SHOT              Z", Principal.WIDTH/5.5f, Principal.HEIGHT/3.6f);
         highscore.draw(game.batch);
 
     }
