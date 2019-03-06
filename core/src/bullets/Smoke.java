@@ -9,7 +9,7 @@ import utils.Animator;
 
 public class Smoke extends Bullet {
     public Smoke(Animator animator, int x, int y) {
-        super(animator, x, y, ' ', 'U', 1, 3);
+        super(animator, x, y, ' ', 'U', 1, 2);
         setSize(16,16);
         type = "enemy";
     }

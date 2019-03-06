@@ -33,7 +33,7 @@ public class Fire extends Enemy {
         final_x = x;
         final_y = y;
         SPEED_X = 4;
-        SPEED_Y = 0.15f;
+        SPEED_Y = 0.12f;
         this.patron = patron;
         mover = MovementManager.getMover(this,patron, x, y);
         mover.setSpeed(SPEED_X,SPEED_Y);
@@ -44,7 +44,7 @@ public class Fire extends Enemy {
         dyingAnimator = new Animator(new Texture(Gdx.files.internal("enemies/EnemyDefeat.png")),1,2,2,0.2f,size2);
         dyingDuration = 0.3f;
         Random random = new Random();
-        shootInterval = random.nextInt(200) + 100; //[1,3]
+        shootInterval = random.nextInt(100) + 200; //[1,3]
     }
     @Override
     public void shoot() {

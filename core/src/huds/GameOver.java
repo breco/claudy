@@ -39,6 +39,8 @@ public class GameOver {
         time.start();
         Preferences prefs = Gdx.app.getPreferences("Preferences");
         prefs.putInteger("stage",1);
+        prefs.putInteger("HP",8);
+        prefs.putInteger("AP",0);
         prefs.flush();
     }
     public void update(){
